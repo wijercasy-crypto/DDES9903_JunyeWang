@@ -125,7 +125,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &1342427377200328002
 BoxCollider:
@@ -421,7 +420,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &5409558964086184876
 BoxCollider:
@@ -536,7 +534,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &1861339883376005615
 BoxCollider:
@@ -644,7 +641,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   attachPoint: {fileID: 0}
-  throwForce: 1
+  throwForceFactor: 0
+  maxThrowHoldTime: 2
   noCollideOnHold: 1
   groundPlace: 0
   dropOnKeyLift: 0

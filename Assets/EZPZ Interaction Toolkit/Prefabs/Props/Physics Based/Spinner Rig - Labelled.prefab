@@ -524,6 +524,8 @@ MonoBehaviour:
   visibleAtRuntime: 0
   filterString: 
   allowUnfiltered: 1
+  excludeMode: 0
+  explicitExclusionList: []
   onTriggerEnter:
     m_PersistentCalls:
       m_Calls:
@@ -539,14 +541,14 @@ MonoBehaviour:
           m_StringArgument: Spin 2
           m_BoolArgument: 0
         m_CallState: 2
+  deleteOnEnter: 0
+  disableOnEnter: 0
   onTriggerExit:
     m_PersistentCalls:
       m_Calls: []
   onTriggerStay:
     m_PersistentCalls:
       m_Calls: []
-  deleteOnEnter: 0
-  disableOnEnter: 0
   subject: {fileID: 0}
   triggerActive: 1
   myRenderer: {fileID: 0}
@@ -682,6 +684,8 @@ MonoBehaviour:
   visibleAtRuntime: 0
   filterString: 
   allowUnfiltered: 1
+  excludeMode: 0
+  explicitExclusionList: []
   onTriggerEnter:
     m_PersistentCalls:
       m_Calls:
@@ -697,14 +701,14 @@ MonoBehaviour:
           m_StringArgument: Spin 1
           m_BoolArgument: 0
         m_CallState: 2
+  deleteOnEnter: 0
+  disableOnEnter: 0
   onTriggerExit:
     m_PersistentCalls:
       m_Calls: []
   onTriggerStay:
     m_PersistentCalls:
       m_Calls: []
-  deleteOnEnter: 0
-  disableOnEnter: 0
   subject: {fileID: 0}
   triggerActive: 1
   myRenderer: {fileID: 0}
@@ -787,6 +791,8 @@ MonoBehaviour:
   visibleAtRuntime: 0
   filterString: 
   allowUnfiltered: 1
+  excludeMode: 0
+  explicitExclusionList: []
   onTriggerEnter:
     m_PersistentCalls:
       m_Calls:
@@ -802,14 +808,14 @@ MonoBehaviour:
           m_StringArgument: Spin 5
           m_BoolArgument: 0
         m_CallState: 2
+  deleteOnEnter: 0
+  disableOnEnter: 0
   onTriggerExit:
     m_PersistentCalls:
       m_Calls: []
   onTriggerStay:
     m_PersistentCalls:
       m_Calls: []
-  deleteOnEnter: 0
-  disableOnEnter: 0
   subject: {fileID: 0}
   triggerActive: 1
   myRenderer: {fileID: 0}
@@ -1100,6 +1106,8 @@ MonoBehaviour:
   visibleAtRuntime: 0
   filterString: 
   allowUnfiltered: 1
+  excludeMode: 0
+  explicitExclusionList: []
   onTriggerEnter:
     m_PersistentCalls:
       m_Calls:
@@ -1115,14 +1123,14 @@ MonoBehaviour:
           m_StringArgument: Spin 3
           m_BoolArgument: 0
         m_CallState: 2
+  deleteOnEnter: 0
+  disableOnEnter: 0
   onTriggerExit:
     m_PersistentCalls:
       m_Calls: []
   onTriggerStay:
     m_PersistentCalls:
       m_Calls: []
-  deleteOnEnter: 0
-  disableOnEnter: 0
   subject: {fileID: 0}
   triggerActive: 1
   myRenderer: {fileID: 0}
@@ -2045,6 +2053,8 @@ MonoBehaviour:
   visibleAtRuntime: 0
   filterString: 
   allowUnfiltered: 1
+  excludeMode: 0
+  explicitExclusionList: []
   onTriggerEnter:
     m_PersistentCalls:
       m_Calls:
@@ -2060,14 +2070,14 @@ MonoBehaviour:
           m_StringArgument: Spin 0
           m_BoolArgument: 0
         m_CallState: 2
+  deleteOnEnter: 0
+  disableOnEnter: 0
   onTriggerExit:
     m_PersistentCalls:
       m_Calls: []
   onTriggerStay:
     m_PersistentCalls:
       m_Calls: []
-  deleteOnEnter: 0
-  disableOnEnter: 0
   subject: {fileID: 0}
   triggerActive: 1
   myRenderer: {fileID: 0}
@@ -2524,6 +2534,8 @@ MonoBehaviour:
   visibleAtRuntime: 0
   filterString: 
   allowUnfiltered: 1
+  excludeMode: 0
+  explicitExclusionList: []
   onTriggerEnter:
     m_PersistentCalls:
       m_Calls:
@@ -2539,14 +2551,14 @@ MonoBehaviour:
           m_StringArgument: Spin 6
           m_BoolArgument: 0
         m_CallState: 2
+  deleteOnEnter: 0
+  disableOnEnter: 0
   onTriggerExit:
     m_PersistentCalls:
       m_Calls: []
   onTriggerStay:
     m_PersistentCalls:
       m_Calls: []
-  deleteOnEnter: 0
-  disableOnEnter: 0
   subject: {fileID: 0}
   triggerActive: 1
   myRenderer: {fileID: 0}
@@ -2629,6 +2641,8 @@ MonoBehaviour:
   visibleAtRuntime: 0
   filterString: 
   allowUnfiltered: 1
+  excludeMode: 0
+  explicitExclusionList: []
   onTriggerEnter:
     m_PersistentCalls:
       m_Calls:
@@ -2644,14 +2658,14 @@ MonoBehaviour:
           m_StringArgument: Spin 7
           m_BoolArgument: 0
         m_CallState: 2
+  deleteOnEnter: 0
+  disableOnEnter: 0
   onTriggerExit:
     m_PersistentCalls:
       m_Calls: []
   onTriggerStay:
     m_PersistentCalls:
       m_Calls: []
-  deleteOnEnter: 0
-  disableOnEnter: 0
   subject: {fileID: 0}
   triggerActive: 1
   myRenderer: {fileID: 0}
@@ -3025,6 +3039,8 @@ MonoBehaviour:
   visibleAtRuntime: 0
   filterString: 
   allowUnfiltered: 1
+  excludeMode: 0
+  explicitExclusionList: []
   onTriggerEnter:
     m_PersistentCalls:
       m_Calls:
@@ -3040,14 +3056,14 @@ MonoBehaviour:
           m_StringArgument: Spin 4
           m_BoolArgument: 0
         m_CallState: 2
+  deleteOnEnter: 0
+  disableOnEnter: 0
   onTriggerExit:
     m_PersistentCalls:
       m_Calls: []
   onTriggerStay:
     m_PersistentCalls:
       m_Calls: []
-  deleteOnEnter: 0
-  disableOnEnter: 0
   subject: {fileID: 0}
   triggerActive: 1
   myRenderer: {fileID: 0}

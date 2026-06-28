@@ -90,19 +90,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onSecondaryInteract:
+  onPrimaryInteractLift:
     m_PersistentCalls:
       m_Calls: []
-  onPrimaryInteractLift:
+  onSecondaryInteract:
     m_PersistentCalls:
       m_Calls: []
   onSecondaryInteractLift:
     m_PersistentCalls:
       m_Calls: []
-  customTouchDistance: -1
-  customHoldDistance: -1
-  restrictSecondaryToHeldOnly: 0
-  heldText: 
   onHoverEnter:
     m_PersistentCalls:
       m_Calls:
@@ -134,23 +130,45 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   hoverText: 
-  onFirstInteract:
-    m_PersistentCalls:
-      m_Calls: []
+  customTouchDistance: -1
+  heldText: 
+  restrictSecondaryToHeldOnly: 0
+  customHoldDistance: -1
   eventRelay: {fileID: 0}
-  onTextMatch:
+  onPrimaryInteractBackground:
     m_PersistentCalls:
       m_Calls: []
+  onPrimaryInteractLiftBackground:
+    m_PersistentCalls:
+      m_Calls: []
+  onSecondaryInteractBackground:
+    m_PersistentCalls:
+      m_Calls: []
+  onSecondaryInteractLiftBackground:
+    m_PersistentCalls:
+      m_Calls: []
+  onHoverEnterBackground:
+    m_PersistentCalls:
+      m_Calls: []
+  onHoverExitBackground:
+    m_PersistentCalls:
+      m_Calls: []
+  cursorText: _
+  releaseOnEnterKey: 0
   onReleaseTyping:
     m_PersistentCalls:
       m_Calls: []
   onEnterKeyNotForWebGL:
     m_PersistentCalls:
       m_Calls: []
-  textMatchRelay: {fileID: 0}
+  onTextInput:
+    m_PersistentCalls:
+      m_Calls: []
   matchText: 
-  cursorText: _
-  releaseOnEnterKey: 0
+  onTextMatch:
+    m_PersistentCalls:
+      m_Calls: []
+  textMatchRelay: {fileID: 0}
   typeTextBuffer: 
   typeCapture: 0
   textDisplay: {fileID: 6715278842576484253}
@@ -361,7 +379,6 @@ MonoBehaviour:
   m_VerticalAlignment: 8192
   m_textAlignment: 65535
   m_characterSpacing: 0
-  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -587,7 +604,6 @@ MonoBehaviour:
   m_VerticalAlignment: 8192
   m_textAlignment: 65535
   m_characterSpacing: 0
-  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
