@@ -6,14 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/__My Project/My Project Example Scene A.unity
-    guid: c32d0ec56a7a80e468e6f115671378e7
+    path: Assets/DDES9903A1/Prologue.unity
+    guid: 9c4ce8b2e1084214a9928be1522ccd0f
   - enabled: 1
-    path: Assets/__My Project/My Project Example Scene B.unity
-    guid: 623571e0647424e48b43a84af6530dd9
+    path: Assets/DDES9903A1/Chapter1.unity
+    guid: 212e87c55e5191844b59d1bee3644dfc
   - enabled: 1
-    path: Assets/EZPZ b) Examples/a) Standalone Example Scenes/01 Item Cycling.unity
-    guid: 7ecc1225d74d4454aad820312b981b7c
+    path: Assets/DDES9903A1/Chapter2.unity
+    guid: 25d7c3faf0c4bfe48b1dfedcef10c159
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 3c28928f4ba463b408fa3dad31f078ec, type: 2}
