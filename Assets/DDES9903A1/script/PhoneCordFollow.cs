@@ -67,33 +67,37 @@ public class PhoneCordFollow : MonoBehaviour
     private void LateUpdate()
     {
         if (!initialized) return;
+        if (handset == null) return;
+        if (bones == null || bones.Length == 0) return;
 
-        // 听筒连接点的当前位置（目标）
         Transform target = cordAttachPoint != null ? cordAttachPoint : handset;
-        Vector3 targetPos = target.position;
+        if (target == null) return;
 
-        // 末端骨头（听筒端）应该到达的位置 = 听筒连接点
-        // 计算末端骨头从"静止位置"到"听筒位置"的偏移量
         int lastIndex = bones.Length - 1;
-        Vector3 endOffset = targetPos - boneRestWorldPos[lastIndex];
 
-        // 对每节骨头，按比例施加偏移
+        // 末端骨头：只钉位置，不动旋转（旋转交给蒙皮自己算）
+        Vector3 endOffset = target.position - boneRestWorldPos[lastIndex];
+
         for (int i = 0; i < bones.Length; i++)
         {
             if (bones[i] == null) continue;
 
-            // 计算这节骨头的影响比例（0=座机端不动，1=听筒端全跟随）
-            float t = (float)i / lastIndex;           // 0 到 1 线性分布
-            float influence = influenceCurve.Evaluate(t);  // 用曲线让分布更自然
-
-            // 这节骨头的目标位置 = 静止位置 + 按比例的偏移
+            float t = (float)i / lastIndex;
+            float influence = influenceCurve.Evaluate(t);
             Vector3 desiredPos = boneRestWorldPos[i] + endOffset * influence;
 
-            // 平滑移动过去
-            if (followSmoothing <= 0.01f)
-                bones[i].position = desiredPos;
+            // 末端骨头直接钉死，中间骨头平滑跟随
+            if (i == lastIndex)
+            {
+                bones[i].position = desiredPos;  // = target.position，精确贴合
+            }
             else
-                bones[i].position = Vector3.Lerp(bones[i].position, desiredPos, followSmoothing * Time.deltaTime);
+            {
+                if (followSmoothing <= 0.01f)
+                    bones[i].position = desiredPos;
+                else
+                    bones[i].position = Vector3.Lerp(bones[i].position, desiredPos, followSmoothing * Time.deltaTime);
+            }
         }
     }
 
