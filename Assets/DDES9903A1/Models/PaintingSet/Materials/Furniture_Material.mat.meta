@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b935995aeed086a43993923b0b155b69
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 296016
+  packageName: Painting Set
+  packageVersion: 1.0
+  assetPath: Assets/PaintingSet/Materials/Furniture_Material.mat
+  uploadId: 691707

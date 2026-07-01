@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e5b3a4434f39feb41994b7d7ce18d89c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 296016
+  packageName: Painting Set
+  packageVersion: 1.0
+  assetPath: Assets/PaintingSet/Prefab/Bucket.prefab
+  uploadId: 691707

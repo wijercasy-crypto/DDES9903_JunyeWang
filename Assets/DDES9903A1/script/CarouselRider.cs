@@ -1,61 +1,52 @@
 using UnityEngine;
 
 /// <summary>
-/// 旋转木马乘坐系统（保留视角旋转版）
-/// 玩家点击木马坐上去跟着转，坐着时仍可用鼠标环顾四周，再点击起身。
+/// 旋转木马乘坐系统（配合 EZPZ Interactable General 使用版）
+/// 不再自己检测鼠标点击，而是提供公开方法 RideThisSeat(Transform)，
+/// 由每个座位上的 Interactable General 组件的 "On Primary Interact ()" 事件调用。
 /// 
-/// 适配 Unity StarterAssets 的 First Person Controller：
-/// 该脚本移动和视角是一体的，所以坐下时不禁用它，而是把它的移动速度临时清零，
-/// 这样玩家走不动（不会从木马上走开），但鼠标仍能转动视角。
+/// 【重要区别】：
+/// 之前的版本挂在"玩家"身上，自己发射线检测。
+/// 这个新版本挂在"玩家"身上，但由座位的 Interactable General 主动通知它"坐哪个座位"。
 /// 
-/// 挂载步骤：
-/// 1. 把此脚本挂在【玩家】物体上（EZPZ Player Flat Screen WASD）
-/// 2. 确认场景里有 Tag=MainCamera 的摄像机
-/// 3. 给所有木马座位打 Tag = "Rideable"
-/// 4. 不需要再往 Movement Scripts 里拖东西了（脚本自动处理移动速度）
+/// 挂载与配置步骤：
+/// 1. 此脚本挂在【玩家】物体上（EZPZ Player Flat Screen WASD）—— 保持不变
+/// 2. 每个座位（seat1 ~ seat1(13)）上，确保有 EZPZ 的 Interactable General 组件
+///    （如果座位本来就有 Interactable General 就用现成的；没有就 Add Component 加一个）
+/// 3. 在每个座位的 Interactable General 的 "On Primary Interact ()" 事件里：
+///    - Object 槽位：拖入【玩家】物体（挂着这个 CarouselRider 的那个）
+///    - 函数下拉：选 CarouselRider → RideThisSeat (Transform)
+///    - 函数下面会多出一个 Transform 参数槽位：把【这个座位自己】拖进去
+/// 4. 起身：坐着时再点任意座位（或用下面说的按键），会起身
+/// 
+/// 提示：14 个座位逐个配置有点繁琐，但只需做一次。
 /// </summary>
 public class CarouselRider : MonoBehaviour
 {
-    [Header("可乘坐物体识别")]
-    [Tooltip("木马的 Tag。点中带这个 Tag 的物体就能坐上去")]
-    public string rideableTag = "Rideable";
-
     [Header("乘坐设置")]
-    [Tooltip("点击检测的最远距离（米）")]
-    public float clickDistance = 8f;
-
-    [Tooltip("坐上去后，玩家相对座位的高度偏移（米）")]
-    public float seatHeightOffset = 1.0f;
+    [Tooltip("坐上去后，玩家相对座位的高度偏移（米）。坐太高调小，陷进去调大")]
+    public float seatHeightOffset = -0.05f;
 
     [Tooltip("坐上/起身时玩家移动的平滑速度")]
     public float moveSmoothSpeed = 8f;
 
     [Header("起身设置")]
-    [Tooltip("起身后玩家退到木马旁边多远（米）")]
+    [Tooltip("起身后玩家退到座位旁边多远（米）")]
     public float dismountDistance = 2f;
 
     // ── 内部状态 ──
     private bool isRiding = false;
-    private Camera playerCamera;
-
-    private Transform currentHorse;
+    private Transform currentSeat;
     private Vector3 seatLocalTarget;
     private bool isMovingToSeat = false;
 
-    // First Person Controller 相关（用反射或直接引用控制移动速度）
-    private MonoBehaviour fpController;       // First Person Controller 脚本
-    private CharacterController charController;
+    private MonoBehaviour fpController;
     private float savedMoveSpeed;
     private float savedSprintSpeed;
 
     private void Start()
     {
-        playerCamera = Camera.main;
-        if (playerCamera == null)
-            Debug.LogWarning("[乘坐系统] 没找到主摄像机！请确认场景里有 Tag=MainCamera 的摄像机。");
-
-        // 自动找到 First Person Controller 脚本
-        // StarterAssets 的脚本类名是 "FirstPersonController"
+        // 自动找到 First Person Controller 脚本（用于坐下时锁移动、保留视角）
         var allScripts = GetComponents<MonoBehaviour>();
         foreach (var s in allScripts)
         {
@@ -65,101 +56,77 @@ public class CarouselRider : MonoBehaviour
                 break;
             }
         }
-
-        charController = GetComponent<CharacterController>();
-
-        if (fpController == null)
-            Debug.LogWarning("[乘坐系统] 没找到 FirstPersonController 脚本，坐下时可能锁不住移动。");
     }
 
     private void Update()
     {
+        // 坐稳后每帧锁定在座位局部坐标（因为木马在转，要跟着转且不下沉）
         if (isRiding)
         {
             if (isMovingToSeat)
                 SmoothMoveToSeat();
-            else
-                // 已坐稳：每帧锁定局部坐标，防止重力让玩家下沉/漂移
+            else if (currentSeat != null)
                 transform.localPosition = seatLocalTarget;
         }
-
-        if (IsLeftMouseClicked())
-        {
-            if (!isRiding)
-                TryMount();
-            else
-                Dismount();
-        }
     }
 
     // ─────────────────────────────────────────────
-    private bool IsLeftMouseClicked()
-    {
-#if ENABLE_INPUT_SYSTEM
-        return UnityEngine.InputSystem.Mouse.current != null
-            && UnityEngine.InputSystem.Mouse.current.leftButton.wasPressedThisFrame;
-#else
-        return Input.GetMouseButtonDown(0);
-#endif
-    }
-
+    // 公开方法：由座位的 Interactable General 调用
     // ─────────────────────────────────────────────
-    private void TryMount()
+
+    /// <summary>
+    /// 坐上指定的座位。挂到座位 Interactable General 的
+    /// "On Primary Interact ()" 事件上，参数传入该座位自己的 Transform。
+    /// 如果已经坐着，再次调用则起身。
+    /// </summary>
+    public void RideThisSeat(Transform seat)
     {
-        if (playerCamera == null) return;
+        if (seat == null) return;
 
-        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-
-        if (Physics.Raycast(ray, out RaycastHit hit, clickDistance))
+        if (!isRiding)
         {
-            Transform horse = FindRideableParent(hit.collider.transform);
-            if (horse != null)
-            {
-                MountHorse(horse, hit.point);
-            }
+            MountSeat(seat);
+        }
+        else
+        {
+            // 已经在坐了 → 起身
+            Dismount();
         }
     }
 
-    private Transform FindRideableParent(Transform t)
+    /// <summary>坐上座位</summary>
+    private void MountSeat(Transform seat)
     {
-        Transform current = t;
-        while (current != null)
-        {
-            if (current.gameObject.tag == rideableTag)
-                return current;
-            current = current.parent;
-        }
-        return null;
-    }
-
-    private void MountHorse(Transform horse, Vector3 hitPoint)
-    {
-        currentHorse = horse;
+        currentSeat = seat;
         isRiding = true;
 
-        // 锁住移动（速度清零），但保留脚本启用 → 视角还能转
+        // 锁移动（速度清零），保留视角旋转
         LockMovement(true);
 
-        // 玩家变成木马子物体 → 木马转，玩家跟转
-        transform.SetParent(horse, true);
+        // 玩家变成座位的子物体 → 木马转，玩家跟转
+        transform.SetParent(seat, true);
 
-        Vector3 seatWorldPos = hitPoint + Vector3.up * seatHeightOffset;
-        seatLocalTarget = horse.InverseTransformPoint(seatWorldPos);
+        // 目标位置：座位位置 + 高度偏移
+        Vector3 seatWorldPos = seat.position + Vector3.up * seatHeightOffset;
+        seatLocalTarget = seat.InverseTransformPoint(seatWorldPos);
 
         isMovingToSeat = true;
 
-        Debug.Log("[乘坐系统] 坐上了木马：" + horse.name + "（再次点击起身，鼠标可转视角）");
+        Debug.Log("[乘坐系统] 坐上了座位：" + seat.name + "（再次点击座位起身，鼠标可转视角）");
 
-        // 通知引导总管：玩家完成了这个设施的体验（触发熄灭+下一个发光）
+        // 通知引导总管：玩家完成了旋转木马的体验（触发当前设施熄灭 + 下一个点亮）
         if (GuideManager.Instance != null)
-            GuideManager.Instance.CompleteCurrent(horse);
+        {
+            // 座位是 Carousel_Rotate 的子物体，往上找到引导总管里登记的设施
+            GuideManager.Instance.CompleteCurrent(seat);
+        }
     }
 
     private void SmoothMoveToSeat()
     {
-        if (currentHorse == null) return;
+        if (currentSeat == null) return;
 
-        Vector3 targetWorld = currentHorse.TransformPoint(seatLocalTarget);
+        Vector3 targetWorld = currentSeat.TransformPoint(seatLocalTarget);
         transform.position = Vector3.Lerp(transform.position, targetWorld, moveSmoothSpeed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, targetWorld) < 0.05f)
@@ -170,22 +137,12 @@ public class CarouselRider : MonoBehaviour
         }
     }
 
-    /// <summary>坐稳后，每帧把玩家强制锁回座位的局部位置，覆盖 FPS 脚本的移动</summary>
-    private void LateUpdate()
-    {
-        // 已经坐稳（不在移动过程中）时，强制保持在座位局部坐标
-        if (isRiding && !isMovingToSeat && currentHorse != null)
-        {
-            transform.localPosition = seatLocalTarget;
-        }
-    }
-
-    // ─────────────────────────────────────────────
+    /// <summary>起身离开</summary>
     private void Dismount()
     {
-        if (currentHorse == null) return;
+        if (currentSeat == null) return;
 
-        Vector3 awayDir = (transform.position - currentHorse.position);
+        Vector3 awayDir = (transform.position - currentSeat.position);
         awayDir.y = 0;
         if (awayDir.sqrMagnitude < 0.01f) awayDir = -transform.forward;
         awayDir.Normalize();
@@ -203,29 +160,23 @@ public class CarouselRider : MonoBehaviour
 
         isRiding = false;
         isMovingToSeat = false;
-        currentHorse = null;
+        currentSeat = null;
 
         Debug.Log("[乘坐系统] 起身离开了木马");
     }
 
     // ─────────────────────────────────────────────
-    /// <summary>
-    /// 锁住/解锁玩家移动（通过把 FirstPersonController 的速度设为0实现）
-    /// 这样脚本保持启用，鼠标视角旋转不受影响
-    /// </summary>
+    /// <summary>锁住/解锁玩家移动（清零速度，保留视角旋转）</summary>
     private void LockMovement(bool locked)
     {
         if (fpController == null) return;
 
         var type = fpController.GetType();
-
-        // FirstPersonController 里有 MoveSpeed 和 SprintSpeed 两个 public 字段
         var moveSpeedField = type.GetField("MoveSpeed");
         var sprintSpeedField = type.GetField("SprintSpeed");
 
         if (locked)
         {
-            // 保存原速度，然后清零
             if (moveSpeedField != null)
             {
                 savedMoveSpeed = (float)moveSpeedField.GetValue(fpController);
@@ -239,7 +190,6 @@ public class CarouselRider : MonoBehaviour
         }
         else
         {
-            // 恢复原速度
             if (moveSpeedField != null)
                 moveSpeedField.SetValue(fpController, savedMoveSpeed);
             if (sprintSpeedField != null)

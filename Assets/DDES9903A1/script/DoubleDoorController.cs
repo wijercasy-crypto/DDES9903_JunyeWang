@@ -100,7 +100,7 @@ public class DoubleDoorController : MonoBehaviour
     }
 
     // ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    private void ToggleDoors()
+    public void ToggleDoors()
     {
         StopAllCoroutines();
 

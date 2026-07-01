@@ -98,7 +98,7 @@ public class DoorInteractionSimple : MonoBehaviour
     }
 
     // ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
-    private void ToggleDoor()
+    public void ToggleDoor()
     {
         float target = isOpen ? 0f : openAngle;
         float start = isOpen ? openAngle : 0f;

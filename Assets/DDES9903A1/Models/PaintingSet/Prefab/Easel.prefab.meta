@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 36b1ab0a14f0a7948b521e6280f739dc
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 296016
+  packageName: Painting Set
+  packageVersion: 1.0
+  assetPath: Assets/PaintingSet/Prefab/Easel.prefab
+  uploadId: 691707
