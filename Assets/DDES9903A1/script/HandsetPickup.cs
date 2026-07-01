@@ -39,6 +39,9 @@ public class HandsetPickup : MonoBehaviour
     public float animationDuration = 1f;
 
     [Header("音效")]
+    [Tooltip("响铃音源。在 Inspector 里手动加一个 AudioSource 拖进来，就能可视化调 3D 范围")]
+    public AudioSource ringSource;      // ← 改成 public，从 Inspector 拖入
+
     public AudioClip ringSound;
     public AudioClip callSound;
     public bool ringOnStart = true;
@@ -59,7 +62,7 @@ public class HandsetPickup : MonoBehaviour
     private bool hasAnswered = false;
     private bool followingCamera = false;   // 是否正在跟随摄像机
 
-    private AudioSource ringSource;
+  
     private AudioSource callSource;
 
     private void Start()
@@ -76,17 +79,20 @@ public class HandsetPickup : MonoBehaviour
         originalLocalRot = handset.localRotation;
 
         // 音源设置
-        ringSource = gameObject.AddComponent<AudioSource>();
-        ringSource.clip = ringSound;
-        ringSource.loop = true;
-        ringSource.spatialBlend = 1f;
-        ringSource.minDistance = 2f;
-        ringSource.maxDistance = 30f;
+        // ↓ 删掉原来 ringSource = gameObject.AddComponent<AudioSource>() 那一整段
+        // 改成：只把 clip 赋上，其它 3D 参数交给你在 Inspector 里调
+        if (ringSource != null)
+        {
+            ringSource.clip = ringSound;
+            ringSource.loop = true;
+            ringSource.playOnAwake = false;
+        }
 
+        // callSource 保持原样，还是动态创建
         callSource = gameObject.AddComponent<AudioSource>();
         callSource.clip = callSound;
         callSource.loop = false;
-        callSource.spatialBlend = 0.3f;  // 贴耳通话，稍微2D一点更清晰
+        callSource.spatialBlend = 0.3f;
         callSource.minDistance = 2f;
         callSource.maxDistance = 15f;
 
