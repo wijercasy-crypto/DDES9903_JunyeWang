@@ -149,6 +149,10 @@ public class CarouselRider : MonoBehaviour
         isMovingToSeat = true;
 
         Debug.Log("[乘坐系统] 坐上了木马：" + horse.name + "（再次点击起身，鼠标可转视角）");
+
+        // 通知引导总管：玩家完成了这个设施的体验（触发熄灭+下一个发光）
+        if (GuideManager.Instance != null)
+            GuideManager.Instance.CompleteCurrent(horse);
     }
 
     private void SmoothMoveToSeat()
