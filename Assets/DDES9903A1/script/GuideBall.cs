@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-
+using System.Collections;
 /// <summary>
 /// 引导球（平滑曲线 + 动态速度版）
 /// 玩家靠得越近，球滚得越快；玩家越远球越慢，太远则停下。
@@ -12,6 +12,7 @@ using System.Collections.Generic;
 /// 3. 玩家 Tag 设为 "Player"
 /// 4. 调速度区间 minMoveSpeed / maxMoveSpeed
 /// </summary>
+/// 
 public class GuideBall : MonoBehaviour
 {
     [Header("引导路径点（按剧情顺序拖入设施）")]
@@ -38,6 +39,21 @@ public class GuideBall : MonoBehaviour
     [Tooltip("速度变化的平滑度，越大反应越平缓（防止忽快忽慢）")]
     public float speedSmoothing = 5f;
 
+    [Header("登场弹跳（吸引注意）")]
+    [Tooltip("玩家第一次靠近时，球先原地弹跳几下引起注意")]
+    public bool bounceOnFirstApproach = true;
+
+    [Tooltip("玩家离球多近时触发弹跳（米）。独立于滚动的触发距离，可设得比它大，让球更早蹦起来吸引注意")]
+    public float bounceTriggerDistance = 10f;   // ← 新增，默认比 triggerDistance 大
+
+    [Tooltip("弹跳次数")]
+    public int bounceCount = 3;
+
+    [Tooltip("每次弹跳的高度（米）")]
+    public float bounceHeight = 1.2f;
+
+    [Tooltip("每次弹跳的时长（秒），越小弹得越急促")]
+    public float bounceDuration = 0.4f;
     [Header("滚动外观")]
     [Tooltip("球的半径（米），让旋转和移动匹配")]
     public float ballRadius = 0.5f;
@@ -50,6 +66,9 @@ public class GuideBall : MonoBehaviour
     public bool showDebugLog = true;
 
     // ── 内部状态 ──
+    private bool hasBounced = false;   // 是否已经弹跳过（只弹一次）
+    private bool isBouncing = false;   // 正在弹跳中
+    private float groundY;             // 球的地面高度，弹跳落地基准
     private int currentWaypointIndex = -1;
     private bool isMoving = false;
     private Transform player;
@@ -68,6 +87,7 @@ public class GuideBall : MonoBehaviour
 
         if (waypoints.Count == 0)
             Debug.LogWarning("[引导球] Waypoints 列表是空的！请拖入游乐设施。");
+        groundY = transform.position.y;
     }
 
     private void Update()
@@ -99,6 +119,19 @@ public class GuideBall : MonoBehaviour
         }
         else
         {
+            if (isBouncing) return;   // 正在弹跳时，先别做别的
+
+            // ① 弹跳判定：用独立的 bounceTriggerDistance，只弹一次
+            if (bounceOnFirstApproach && !hasBounced
+                && distanceToPlayer <= bounceTriggerDistance
+                && currentWaypointIndex < waypoints.Count - 1)
+            {
+                hasBounced = true;
+                StartCoroutine(BounceThenStart());
+                return;
+            }
+
+            // ② 滚动判定：用原来的 triggerDistance
             if (distanceToPlayer <= triggerDistance && currentWaypointIndex < waypoints.Count - 1)
             {
                 currentWaypointIndex++;
@@ -111,7 +144,58 @@ public class GuideBall : MonoBehaviour
             }
         }
     }
+        
+    /// <summary>先弹跳几下吸引注意，弹完再开始滚向第一个设施</summary>
+    private IEnumerator BounceThenStart()
+    {
+        isBouncing = true;
+        if (showDebugLog) Debug.Log("[引导球] 登场弹跳，吸引玩家注意！");
 
+        yield return StartCoroutine(DoBounces());
+
+        isBouncing = false;
+
+        // 弹完立刻开始滚向第一个设施
+        currentWaypointIndex++;
+        BuildSmoothPath();
+        isMoving = true;
+        pathStepIndex = 0;
+    }
+
+    /// <summary>执行 bounceCount 次弹跳，每次用 sin 曲线做出上抛落地的手感</summary>
+    private IEnumerator DoBounces()
+    {
+        for (int b = 0; b < bounceCount; b++)
+        {
+            // 每次弹跳高度递减一点，更自然（第一下最高，后面越来越低）
+            float thisHeight = bounceHeight * (1f - b * 0.2f);
+            if (thisHeight < 0.1f) thisHeight = 0.1f;
+
+            float elapsed = 0f;
+            while (elapsed < bounceDuration)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / bounceDuration;
+
+                // sin(0→π) 形成一个上去再下来的弧线，t=0.5 时最高
+                float height = Mathf.Sin(t * Mathf.PI) * thisHeight;
+
+                Vector3 pos = transform.position;
+                pos.y = groundY + height;
+                transform.position = pos;
+
+                // 顺便让球转一点，看着更活泼（可选）
+                transform.Rotate(Vector3.right, 360f * Time.deltaTime, Space.World);
+
+                yield return null;
+            }
+        }
+
+        // 确保最后精确落回地面
+        Vector3 finalPos = transform.position;
+        finalPos.y = groundY;
+        transform.position = finalPos;
+    }
     /// <summary>
     /// 根据玩家距离计算球应有的速度
     /// 玩家越近 → 越快；玩家越远 → 越慢
