@@ -11,7 +11,10 @@ namespace StarterAssets
 #endif
 	public class FirstPersonController : MonoBehaviour
 	{
-		[Header("Player")]
+        [Header("外部控制")]
+        [Tooltip("锁住时停止移动/重力（但保留扭头看视角）。坐载具时用")]
+        public bool movementLocked = false;
+        [Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
 		public float MoveSpeed = 4.0f;
 		[Tooltip("Sprint speed of the character in m/s")]
@@ -110,14 +113,17 @@ namespace StarterAssets
 			_fallTimeoutDelta = FallTimeout;
 		}
 
-		private void Update()
-		{
-			JumpAndGravity();
-			GroundedCheck();
-			Move();
-		}
+        private void Update()
+        {
+            if (movementLocked)
+                return;   // 锁住时不跑移动/重力/落地检查，也就不会调 _controller.Move()
 
-		private void LateUpdate()
+            JumpAndGravity();
+            GroundedCheck();
+            Move();
+        }
+
+        private void LateUpdate()
 		{
 			CameraRotation();
 		}
