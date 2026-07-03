@@ -25,7 +25,7 @@ public class CoasterRider : MonoBehaviour
     public float seatHeightOffset = 0f;
 
     // ©¤©¤ ÄÚ²¿×´Ì¬ ©¤©¤
-    private bool isRiding = false;
+    public bool isRiding = false;
     private Vector3 mountWorldPos;
     private Quaternion mountWorldRot;
 

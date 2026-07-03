@@ -10,6 +10,14 @@ using UnityEngine;
 /// </summary>
 public class CarouselRider : MonoBehaviour
 {
+    [Header("坐上时触发的字幕（可选）")]
+    [Tooltip("坐上这个设施时，显示这条字幕（比如出现在前一个设施上）")]
+    public TriggeredSubtitle subtitleOnMount;
+    [Header("木马照片墙的灯（坐上熄灭，只亮一次）")]
+    public OneTimeLight photoWallLight;
+    [Header("坐上时禁用的碰撞（防止被挤出）")]
+    public Collider playerCollider;
+    public CharacterController playerController;
     [Header("乘坐设置")]
     [Tooltip("坐上去后，玩家相对座位的高度偏移（米）")]
     public float seatHeightOffset = -0.05f;
@@ -18,7 +26,7 @@ public class CarouselRider : MonoBehaviour
     public float moveSmoothSpeed = 8f;
 
     // ── 内部状态 ──
-    private bool isRiding = false;
+    public bool isRiding = false;
     private Transform currentSeat;
     private Vector3 seatLocalTarget;
     private bool isMovingToSeat = false;
@@ -80,6 +88,8 @@ public class CarouselRider : MonoBehaviour
     /// <summary>坐上座位</summary>
     private void MountSeat(Transform seat)
     {
+        if (subtitleOnMount != null) subtitleOnMount.Show();
+        if (photoWallLight != null) photoWallLight.TurnOffForever();
         currentSeat = seat;
         isRiding = true;
 
@@ -101,7 +111,14 @@ public class CarouselRider : MonoBehaviour
         currentRotate = seat.GetComponentInParent<SimpleRotate>();
         currentMusic = seat.GetComponentInParent<CarouselMusic>();
         currentMemory = seat.GetComponentInParent<CarouselMemory>();
-
+        // MountSeat 里，锁移动那部分加：
+        if (fpController != null)
+        {
+            var f = fpController.GetType().GetField("movementLocked");
+            if (f != null) f.SetValue(fpController, true);   // 停止 Move()，不再报 inactive 错
+        }
+        if (playerCollider != null) playerCollider.enabled = false;
+        if (playerController != null) playerController.enabled = false;
         // 启动该设施的旋转 / 回忆 / 音乐（都在 GuideManager 判断之外，保证一定执行）
         if (currentRotate != null) currentRotate.StartRotating();
         if (currentMemory != null) currentMemory.BeginMemory();
@@ -137,12 +154,19 @@ public class CarouselRider : MonoBehaviour
         transform.rotation = mountWorldRot;
 
         LockMovement(false);
-
+        // Dismount 里，解锁移动那部分加：
+        if (fpController != null)
+        {
+            var f = fpController.GetType().GetField("movementLocked");
+            if (f != null) f.SetValue(fpController, false);
+        }
         // 停止该设施的旋转 / 回忆 / 音乐
         if (currentRotate != null) currentRotate.StopRotating();
         if (currentMemory != null) currentMemory.EndMemory();
         if (currentMusic != null) currentMusic.FadeOut();
 
+        if (playerCollider != null) playerCollider.enabled = true;
+        if (playerController != null) playerController.enabled = true;
         isRiding = false;
         isMovingToSeat = false;
         currentSeat = null;
