@@ -8,6 +8,33 @@ using System.Collections.Generic;
 /// </summary>
 public class CoasterTrain : MonoBehaviour
 {
+    [System.Serializable]
+    public class DistanceTrigger
+    {
+        [Tooltip("车头到达这个距离时触发")]
+        public float distance;
+        [Tooltip("触发的事件（比如显示字幕、让小女孩出现）")]
+        public UnityEngine.Events.UnityEvent onReach;
+        [HideInInspector] public bool triggered;   // 防止重复触发
+    }
+
+    [Header("到达位置触发事件")]
+    public List<DistanceTrigger> distanceTriggers = new List<DistanceTrigger>();
+    [System.Serializable]
+    public class SpeedZone
+    {
+        [Tooltip("这一段从路径距离多少米开始")]
+        public float startDistance;
+        [Tooltip("到多少米结束")]
+        public float endDistance;
+        [Tooltip("这一段的速度（米/秒）。设 0 = 停在这里")]
+        public float speed = 8f;
+        [Tooltip("停顿时长（秒），仅当 speed=0 时有效，停这么久再继续")]
+        public float pauseDuration = 0f;
+    }
+    [Header("速度分段（叙事变速）")]
+    [Tooltip("按顺序定义每段的速度。不在任何段内的路程用默认 speed")]
+    public List<SpeedZone> speedZones = new List<SpeedZone>();
     [Header("路径点（按顺序）")]
     public List<Transform> pathPoints = new List<Transform>();
 
@@ -37,7 +64,7 @@ public class CoasterTrain : MonoBehaviour
     [Header("跑完回调")]
     public UnityEngine.Events.UnityEvent onFinished;
 
-    private float headDistance = 0f;
+    public float headDistance = 0f;
     private float totalLength = 0f;
     private List<float> cumulative = new List<float>();
 
@@ -63,6 +90,7 @@ public class CoasterTrain : MonoBehaviour
     {
         headDistance = 0f;
         isRunning = true;
+        foreach (var t in distanceTriggers) t.triggered = false;   // 重置
     }
 
     public void StopRunning()
@@ -70,35 +98,79 @@ public class CoasterTrain : MonoBehaviour
         isRunning = false;
     }
 
+    private float pauseTimer = 0f;   // 停顿计时
+
     private void Update()
     {
         if (!isRunning) return;
         if (pathPoints.Count < 2 || cars.Count == 0) return;
 
-        headDistance += speed * Time.deltaTime;
+        // 根据当前位置，找出这一段该用的速度
+        float currentSpeed = speed;   // 默认速度
+        SpeedZone activeZone = null;
+        foreach (var z in speedZones)
+        {
+            if (headDistance >= z.startDistance && headDistance < z.endDistance)
+            {
+                currentSpeed = z.speed;
+                activeZone = z;
+                break;
+            }
+        }// 在 headDistance 推进之后加：
+        foreach (var trig in distanceTriggers)
+        {
+            if (!trig.triggered && headDistance >= trig.distance)
+            {
+                trig.triggered = true;
+                trig.onReach?.Invoke();
+            }
+        }
 
+        // 如果这一段是"停顿"（speed=0 且设了 pauseDuration）
+        if (activeZone != null && activeZone.speed <= 0.01f && activeZone.pauseDuration > 0f)
+        {
+            pauseTimer += Time.deltaTime;
+            if (pauseTimer < activeZone.pauseDuration)
+            {
+                // 停顿中，不推进，但仍更新车厢位置（保持在原地）
+                UpdateCarPositions();
+                return;
+            }
+            // 停够了，把车推过这一段，避免卡住
+            else
+            {
+                headDistance = activeZone.endDistance;
+                pauseTimer = 0f;
+            }
+        }
+        else
+        {
+            pauseTimer = 0f;
+        }
+
+        // 用当前段的速度推进
+        headDistance += currentSpeed * Time.deltaTime;
+
+        UpdateCarPositions();
+
+        // 到终点
+        if (headDistance >= totalLength)
+        {
+            if (loop) headDistance = 0f;
+            else { isRunning = false; onFinished?.Invoke(); }
+        }
+    }
+
+    /// <summary>把所有车厢摆到当前位置（原来 Update 里的循环抽出来）</summary>
+    private void UpdateCarPositions()
+    {
         for (int c = 0; c < cars.Count; c++)
         {
             if (cars[c] == null) continue;
-
-            // 每节车厢的间距：优先用 carOffsets，没填就用默认统一间距
             float offset = (c < carOffsets.Count) ? carOffsets[c] : c * defaultSpacing;
             float carDist = headDistance - offset;
             if (carDist < 0f) carDist = 0f;
-
             PlaceCarAtDistance(cars[c], carDist);
-        }
-
-        if (headDistance >= totalLength)
-        {
-            if (loop)
-                headDistance = 0f;
-            else
-            {
-                isRunning = false;
-                onFinished?.Invoke();
-                Debug.Log("[过山车] 跑完，停下");
-            }
         }
     }
 

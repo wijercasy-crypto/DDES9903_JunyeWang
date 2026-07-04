@@ -6,6 +6,9 @@ using UnityEngine;
 /// </summary>
 public class CoasterRider : MonoBehaviour
 {
+    [Header("过山车音乐")]
+    [Tooltip("过山车的 CarouselMusic（挂在 RollerCoaster_Wagon 上）")]
+    public CarouselMusic coasterMusic;
     [Header("坐车时禁用的碰撞（防止被车厢挤出）")]
     [Tooltip("玩家的 CharacterController 或 Collider，坐车时临时禁用")]
     public Collider playerCollider;
@@ -51,8 +54,9 @@ public class CoasterRider : MonoBehaviour
     private Transform currentSeat;   // 当前坐的座位
     private void Update()
     {
+        
         // 坐着时按 Esc 强制下车
-        if (isRiding && Input.GetKeyDown(KeyCode.Escape))
+        if (isRiding && Input.GetKeyDown(KeyCode.Q))
         {
             Dismount();
             return;
@@ -75,6 +79,7 @@ public class CoasterRider : MonoBehaviour
 
     private void Mount(Transform seat)
     {
+        if (coasterMusic != null) coasterMusic.FadeIn();
         // 用反射设开关（因为 FirstPersonController 在 StarterAssets 命名空间，CoasterRider 里直接引用要加 using）
         if (fpController != null)
         {
@@ -102,7 +107,7 @@ public class CoasterRider : MonoBehaviour
     private void Dismount()
     {
         if (!isRiding) return;
-
+        if (coasterMusic != null) coasterMusic.FadeOut();
         // 玩家脱离车厢，传回上车点
         transform.SetParent(null, true);
         transform.position = mountWorldPos;
