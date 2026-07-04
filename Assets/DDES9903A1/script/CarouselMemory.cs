@@ -73,6 +73,7 @@ public class CarouselMemory : MonoBehaviour
     /// <summary>由 CarouselRider 在玩家坐上木马时调用，开始回忆序列</summary>
     public void BeginMemory()
     {
+        FindObjectOfType<BGMManager>()?.DuckVolume();
         foreach (var o in hideOutlines)
             if (o != null) o.enabled = false;
         if (sequenceActive) return;
@@ -82,6 +83,7 @@ public class CarouselMemory : MonoBehaviour
     /// <summary>由 CarouselRider 在玩家起身时调用，中止回忆、恢复</summary>
     public void EndMemory()
     {
+        FindObjectOfType<BGMManager>()?.RestoreVolume();
         foreach (var o in hideOutlines)
             if (o != null) o.enabled = true;
         StopAllCoroutines();
