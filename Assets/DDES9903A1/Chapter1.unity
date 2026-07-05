@@ -7590,6 +7590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7990d792dde61264896123bf9a0a3f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarouselMusic
+  sources: []
   targetVolume: 0.7
   fadeInDuration: 2
   fadeOutDuration: 2
@@ -8732,6 +8733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7990d792dde61264896123bf9a0a3f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarouselMusic
+  sources: []
   targetVolume: 0.7
   fadeInDuration: 2
   fadeOutDuration: 2
@@ -15853,7 +15855,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 9ee8926205c83794e8f92d0867a035a5, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.66
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -15861,8 +15863,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 136
   DopplerLevel: 1
-  MinDistance: 1.63
-  MaxDistance: 23.22
+  MinDistance: 1.91
+  MaxDistance: 4
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -15949,9 +15951,109 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7990d792dde61264896123bf9a0a3f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarouselMusic
-  targetVolume: 0.7
+  sources:
+  - {fileID: 432434992}
+  - {fileID: 432434997}
+  targetVolume: 0.86
   fadeInDuration: 2
   fadeOutDuration: 2
+--- !u!82 &432434997
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432434986}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: f4fcd3c7e011b3f4a8cbe84af85ec0c6, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1.47
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &433916100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17560,7 +17662,6 @@ GameObject:
   - component: {fileID: 489361751}
   - component: {fileID: 489361750}
   - component: {fileID: 489361749}
-  - component: {fileID: 489361748}
   - component: {fileID: 489361747}
   m_Layer: 0
   m_Name: Subtitle_01 (10)
@@ -17585,30 +17686,12 @@ MonoBehaviour:
   lines:
   - "\u201CCaptain, are you ready to leave Earth?\u201D"
   - "\u201CYes Sir! Next stop, the moon!\u201D"
-  fadeInDuration: 1
+  fadeInDuration: 0.92
   holdDuration: 4.46
   fadeOutDuration: 0.72
-  gapBetweenLines: -0.06
+  gapBetweenLines: 0.48
   maxAlpha: 1
   faceCamera: 1
---- !u!114 &489361748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 489361746}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dbac8dc8d88e324e9c8dd111ac2941c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FloatingSubtitle
-  player: {fileID: 150497416}
-  showDistance: 11.06
-  fullDistance: 4.33
-  fadeSpeed: 2
-  maxAlpha: 1
-  faceCamera: 0
 --- !u!114 &489361749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20221,6 +20304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7990d792dde61264896123bf9a0a3f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarouselMusic
+  sources: []
   targetVolume: 1
   fadeInDuration: 2
   fadeOutDuration: 2
@@ -21424,12 +21508,12 @@ MonoBehaviour:
   - {fileID: 2096105782}
   - {fileID: 1705404524}
   - {fileID: 343218913}
-  triggerDistance: 4.25
-  stopDistance: 13.18
-  minMoveSpeed: 1.06
+  triggerDistance: 5.07
+  stopDistance: 18.2
+  minMoveSpeed: 0.74
   maxMoveSpeed: 10.7
-  fullSpeedDistance: 1.42
-  speedSmoothing: 38.3
+  fullSpeedDistance: 1.64
+  speedSmoothing: 45.1
   bounceOnFirstApproach: 1
   bounceTriggerDistance: 7.8
   bounceCount: 2
@@ -26931,6 +27015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7990d792dde61264896123bf9a0a3f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarouselMusic
+  sources: []
   targetVolume: 0.7
   fadeInDuration: 2
   fadeOutDuration: 2
@@ -36440,7 +36525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5477663902695651912, guid: df63664dbdd376b4298726771ab129fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: 6.4
       objectReference: {fileID: 0}
     - target: {fileID: 5477663902695651912, guid: df63664dbdd376b4298726771ab129fa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -36448,7 +36533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5477663902695651912, guid: df63664dbdd376b4298726771ab129fa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 45.4
+      value: 43.88
       objectReference: {fileID: 0}
     - target: {fileID: 5477663902695651912, guid: df63664dbdd376b4298726771ab129fa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -39203,6 +39288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7990d792dde61264896123bf9a0a3f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarouselMusic
+  sources: []
   targetVolume: 0.7
   fadeInDuration: 3
   fadeOutDuration: 2
@@ -39249,6 +39335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7990d792dde61264896123bf9a0a3f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarouselMusic
+  sources: []
   targetVolume: 0.7
   fadeInDuration: 3.81
   fadeOutDuration: 2
@@ -51512,6 +51599,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4887191329890968903, guid: cbc30828c259e7f498dcae894579292d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 432434993}
+    - targetCorrespondingSourceObject: {fileID: 4887191329890968903, guid: cbc30828c259e7f498dcae894579292d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 432434997}
   m_SourcePrefab: {fileID: 100100000, guid: cbc30828c259e7f498dcae894579292d, type: 3}
 --- !u!4 &1285117616 stripped
 Transform:
@@ -54467,6 +54557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7990d792dde61264896123bf9a0a3f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarouselMusic
+  sources: []
   targetVolume: 0.7
   fadeInDuration: 2
   fadeOutDuration: 2
@@ -61564,6 +61655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7990d792dde61264896123bf9a0a3f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarouselMusic
+  sources: []
   targetVolume: 0.7
   fadeInDuration: 2
   fadeOutDuration: 2
@@ -65292,7 +65384,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1010639161849246233, guid: 685e9e97a89530842ac4031ead088c9d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.46
+      value: 4.53
       objectReference: {fileID: 0}
     - target: {fileID: 1010639161849246233, guid: 685e9e97a89530842ac4031ead088c9d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -65300,7 +65392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1010639161849246233, guid: 685e9e97a89530842ac4031ead088c9d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.4
+      value: 2.22
       objectReference: {fileID: 0}
     - target: {fileID: 1010639161849246233, guid: 685e9e97a89530842ac4031ead088c9d, type: 3}
       propertyPath: m_LocalRotation.w
