@@ -4,7 +4,7 @@
             {
                 "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "firstTime",
-                "value": "{\"m_Value\":true}"
+                "value": "{\"m_Value\":false}"
             },
             {
                 "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
@@ -19,7 +19,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"C:/Users/WIJERCASY/Desktop/DDES9903/WebGLBuild/WebGL;C:/Users/avata/Desktop/Builds/EZPZ/6.2.14 Test;C:/Users/avata/OneDrive/Desktop/Builds/EZPZWebGLTest;C:/Users/avata/Desktop/Builds/EZPZ/A1Test;C:/Users/avata/Desktop/Builds/TabTest;C:/Users/avata/OneDrive/Desktop/Builds/Name Build;C:/Users/avata/OneDrive/Desktop/Builds/Elmo Too Far;;;\"}"
+                "value": "{\"m_Value\":\"C:/Users/WIJERCASY/Desktop/DDES9903/WebGLBuild/Web版;C:/Users/WIJERCASY/Desktop/DDES9903/WebGLBuild/网页游玩;C:/Users/WIJERCASY/Desktop/DDES9903/WebGLBuild/WebGL;C:/Users/avata/Desktop/Builds/EZPZ/6.2.14 Test;C:/Users/avata/OneDrive/Desktop/Builds/EZPZWebGLTest;C:/Users/avata/Desktop/Builds/EZPZ/A1Test;C:/Users/avata/Desktop/Builds/TabTest;C:/Users/avata/OneDrive/Desktop/Builds/Name Build;C:/Users/avata/OneDrive/Desktop/Builds/Elmo Too Far;\"}"
             }
         ]
     }
