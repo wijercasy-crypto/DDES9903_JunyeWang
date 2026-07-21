@@ -5907,8 +5907,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 5.2
-  MaxDistance: 57
+  MinDistance: 4
+  MaxDistance: 56.8
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -11128,7 +11128,7 @@ AudioSource:
   MinDistance: 12.4
   MaxDistance: 83.92
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -13894,7 +13894,7 @@ AudioSource:
   MinDistance: 8.4
   MaxDistance: 70.05
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -43287,11 +43287,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4806087369305252970, guid: b3bed4b47ee9c324599eebc9ac56e692, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.2189066
+      value: 2.389528
       objectReference: {fileID: 0}
     - target: {fileID: 4806087369305252970, guid: b3bed4b47ee9c324599eebc9ac56e692, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5.17031
+      value: 5.780924
       objectReference: {fileID: 0}
     - target: {fileID: 4806087369305252970, guid: b3bed4b47ee9c324599eebc9ac56e692, type: 3}
       propertyPath: m_LocalScale.z
@@ -43299,15 +43299,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4806087369305252970, guid: b3bed4b47ee9c324599eebc9ac56e692, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 310.42
+      value: 310.5055
       objectReference: {fileID: 0}
     - target: {fileID: 4806087369305252970, guid: b3bed4b47ee9c324599eebc9ac56e692, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.3
+      value: -14.43
       objectReference: {fileID: 0}
     - target: {fileID: 4806087369305252970, guid: b3bed4b47ee9c324599eebc9ac56e692, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 152.72
+      value: 152.8636
       objectReference: {fileID: 0}
     - target: {fileID: 4806087369305252970, guid: b3bed4b47ee9c324599eebc9ac56e692, type: 3}
       propertyPath: m_LocalRotation.w
