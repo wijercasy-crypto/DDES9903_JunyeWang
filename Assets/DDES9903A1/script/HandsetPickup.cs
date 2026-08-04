@@ -1,21 +1,25 @@
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 /// <summary>
 /// 听筒拿起动画（第一视角贴耳版）
 /// 玩家点击电话 → 听筒飞到摄像机前方固定位置（像举着电话贴耳）→ 跟随视角。
 /// 再次点击 → 听筒飞回座机原位挂断。
-/// 
-/// 注意：听筒飞到脸前时离座机很远，电话线会被拉长。配合 PhoneCordFollow 的
-/// 平滑跟随，线会尽量自然，但大幅移动时线较长属于正常。
-/// 
+///
+/// 新增：onAnswered / onHungUp 两个事件，分别在"接起完成"和"挂断完成"的瞬间触发，
+/// 可以在 Inspector 里直接拖字幕的 Show()/Hide() 进去，不用去猜 ToggleHandset() 现在是哪个方向。
+///
 /// 挂载步骤：
 /// 1. 挂在电话 Phone_Rigged 上
 /// 2. Handset：拖入听筒 Mesh_0.001
 /// 3. Player Camera：拖入主摄像机（MainCamera），不填会自动找 Camera.main
 /// 4. 调 Camera Local Position / Rotation 设置听筒在视野里的位置和角度
 /// 5. Interactable General 的 On Primary Interact () → HandsetPickup.ToggleHandset()
-/// 6. 放入铃声、通话语音
+/// 6. On Answered() 事件：拖通话字幕物体，选 TriggeredSubtitle -> Show()
+/// 7. On Hung Up() 事件：拖通话字幕物体，选 TriggeredSubtitle -> Hide()；
+///    再加一条，拖"提示开抽屉"的字幕物体，选 TriggeredSubtitle -> Show()
+/// 8. 放入铃声、通话语音
 /// </summary>
 public class HandsetPickup : MonoBehaviour
 {
@@ -46,12 +50,19 @@ public class HandsetPickup : MonoBehaviour
     public AudioClip callSound;
     public bool ringOnStart = true;
 
-    [Header("字幕（可选）")]
+    [Header("字幕（可选，原来的单句提示，可以不用了）")]
     [TextArea(2, 4)]
     public string subtitleText = "……爸爸……你还记得我们吗……";
 
     [Header("剧情触发（可选）")]
     public float afterCallDelay = 2f;
+
+    [Header("接起 / 挂断 事件")]
+    [Tooltip("听筒飞到耳边、'接起完成'的瞬间触发。可以拖通话字幕的 Show() 进来")]
+    public UnityEvent onAnswered;
+
+    [Tooltip("听筒飞回座机、'挂断完成'的瞬间触发。可以拖通话字幕的 Hide()、以及下一句提示字幕的 Show() 进来")]
+    public UnityEvent onHungUp;
 
     // ── 内部状态 ──
     private Transform originalParent;
@@ -62,7 +73,7 @@ public class HandsetPickup : MonoBehaviour
     private bool hasAnswered = false;
     private bool followingCamera = false;   // 是否正在跟随摄像机
 
-  
+
     private AudioSource callSource;
 
     private void Start()
@@ -79,8 +90,6 @@ public class HandsetPickup : MonoBehaviour
         originalLocalRot = handset.localRotation;
 
         // 音源设置
-        // ↓ 删掉原来 ringSource = gameObject.AddComponent<AudioSource>() 那一整段
-        // 改成：只把 clip 赋上，其它 3D 参数交给你在 Inspector 里调
         if (ringSource != null)
         {
             ringSource.clip = ringSound;
@@ -124,10 +133,8 @@ public class HandsetPickup : MonoBehaviour
     /// <summary>安全获取当前有效的摄像机（避免用到已销毁的引用）</summary>
     private Camera GetCamera()
     {
-        // 如果手动指定的摄像机还有效，就用它
         if (playerCamera != null)
             return playerCamera;
-        // 否则实时获取主摄像机
         return Camera.main;
     }
 
@@ -146,7 +153,6 @@ public class HandsetPickup : MonoBehaviour
     /// <summary>听筒飞到摄像机前</summary>
     private IEnumerator LiftToCamera()
     {
-        // 先确认有有效摄像机，没有就不执行（避免卡死）
         Camera cam = GetCamera();
         if (cam == null)
         {
@@ -157,10 +163,8 @@ public class HandsetPickup : MonoBehaviour
         isAnimating = true;
         if (ringSource != null) ringSource.Stop();
 
-        // 把听筒从座机层级中脱离（这样它能自由飞到摄像机前，不受座机变换影响）
         handset.SetParent(null, true);
 
-        // 动画：从当前位置飞到摄像机前的目标位置
         Vector3 startPos = handset.position;
         Quaternion startRot = handset.rotation;
 
@@ -170,7 +174,6 @@ public class HandsetPickup : MonoBehaviour
             elapsed += Time.deltaTime;
             float t = Mathf.SmoothStep(0f, 1f, elapsed / animationDuration);
 
-            // 每帧重新获取摄像机，避免用到失效引用
             Camera c = GetCamera();
             if (c == null) yield break;
 
@@ -182,12 +185,14 @@ public class HandsetPickup : MonoBehaviour
             yield return null;
         }
 
-        // 到位后开启"每帧跟随摄像机"
         followingCamera = true;
         isLifted = true;
         isAnimating = false;
 
         Debug.Log("[电话] 听筒已举到耳边");
+
+        // 接起完成，触发事件（比如通话字幕 Show）
+        onAnswered?.Invoke();
 
         if (!hasAnswered)
         {
@@ -200,19 +205,16 @@ public class HandsetPickup : MonoBehaviour
     private IEnumerator LowerToBase()
     {
         isAnimating = true;
-        followingCamera = false;  // 停止跟随摄像机
+        followingCamera = false;
 
         Vector3 startPos = handset.position;
         Quaternion startRot = handset.rotation;
 
-        // 目标：回到座机上的原始位置
-        // 先临时把听筒放回原父物体来计算原始世界位置
         handset.SetParent(originalParent, true);
         handset.localPosition = originalLocalPos;
         handset.localRotation = originalLocalRot;
         Vector3 basePos = handset.position;
         Quaternion baseRot = handset.rotation;
-        // 再飞回去（先移回起点，动画过去）
         handset.position = startPos;
         handset.rotation = startRot;
 
@@ -226,7 +228,6 @@ public class HandsetPickup : MonoBehaviour
             yield return null;
         }
 
-        // 精确归位
         handset.localPosition = originalLocalPos;
         handset.localRotation = originalLocalRot;
 
@@ -235,6 +236,9 @@ public class HandsetPickup : MonoBehaviour
         if (callSource != null) callSource.Stop();
 
         Debug.Log("[电话] 听筒已放回");
+
+        // 挂断完成，触发事件（比如通话字幕 Hide + 提示字幕 Show）
+        onHungUp?.Invoke();
     }
 
     private IEnumerator PlayCall()

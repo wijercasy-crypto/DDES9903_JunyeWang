@@ -6,6 +6,8 @@ using System.Collections.Generic;
 /// <summary>
 /// 事件触发字幕（支持多句连续播放）。
 /// 调用 Show() 后，按顺序播放 lines 里的每一句：渐显→停留→渐隐→下一句。
+/// 调用 Hide() 可以随时打断当前播放，让字幕立刻渐隐消失
+/// （比如玩家接起电话的瞬间，不管字幕正播到哪一句，都让它消失）。
 /// </summary>
 [RequireComponent(typeof(TMP_Text))]
 public class TriggeredSubtitle : MonoBehaviour
@@ -50,6 +52,26 @@ public class TriggeredSubtitle : MonoBehaviour
     {
         if (routine != null) StopCoroutine(routine);
         routine = StartCoroutine(PlayAllLines());
+    }
+
+    /// <summary>外部调用：不管当前播放到哪，立刻打断并渐隐消失
+    /// （比如接起电话的瞬间，把还没播完的提示字幕关掉）
+    /// 同时会关掉 FloatingSubtitle（如果有的话），
+    /// 避免那个脚本每帧按距离持续把 Alpha 往回拉，导致这里渐隐了又被顶回去</summary>
+    public void Hide()
+    {
+        // 用字符串查找组件，这样不需要在这个脚本里 import FloatingSubtitle 的类型定义，
+        // 避免脚本之间产生编译依赖
+        var floatingSubtitle = GetComponent("FloatingSubtitle") as MonoBehaviour;
+        if (floatingSubtitle != null) floatingSubtitle.enabled = false;
+
+        if (routine != null) StopCoroutine(routine);
+        routine = StartCoroutine(FadeOutAndStop());
+    }
+
+    private IEnumerator FadeOutAndStop()
+    {
+        yield return Fade(tmp.color.a, 0f, fadeOutDuration);
     }
 
     private IEnumerator PlayAllLines()
