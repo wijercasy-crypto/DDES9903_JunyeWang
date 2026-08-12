@@ -10,6 +10,13 @@ public class TumbleweedRoller : MonoBehaviour
     public float crossWidth = 6f;       // 滚动路径左右各延伸多远
     public float spinSpeed = 480f;      // 自转速度(度/秒)，做出滚动感
 
+    [Header("音效")]
+    [Tooltip("留空会自动在这个物体上添加一个 AudioSource")]
+    public AudioSource audioSource;
+    public AudioClip rollSound;
+    [Tooltip("每次滚动的音调随机浮动范围，避免每次听起来完全一样")]
+    public float pitchVariance = 0.1f;
+
     public bool showDebugLogs = true;
 
     private Renderer[] renderers;
@@ -18,6 +25,15 @@ public class TumbleweedRoller : MonoBehaviour
     {
         renderers = GetComponentsInChildren<Renderer>();
         gameObject.SetActive(false);
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+                audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 1f; // 3D音效，跟着风滚草的位置走
     }
 
     public IEnumerator RollAcross(Vector3 crossPoint, Vector3 viewDir, float groundY)
@@ -36,7 +52,32 @@ public class TumbleweedRoller : MonoBehaviour
         transform.position = start;
         gameObject.SetActive(true);
 
-        if (showDebugLogs) Debug.Log($"[Tumbleweed] 已SetActive(true)，activeSelf={gameObject.activeSelf}，activeInHierarchy={gameObject.activeInHierarchy}，start={start}，end={end}");
+        if (rollSound != null && audioSource != null)
+        {
+            audioSource.pitch = 1f + Random.Range(-pitchVariance, pitchVariance);
+            audioSource.PlayOneShot(rollSound);
+        }
+
+        if (showDebugLogs)
+        {
+            Debug.Log($"[Tumbleweed] 已SetActive(true)，activeSelf={gameObject.activeSelf}，activeInHierarchy={gameObject.activeInHierarchy}，start={start}，end={end}");
+            if (!gameObject.activeSelf)
+            {
+                Component[] all = GetComponents<Component>();
+                string list = "";
+                foreach (var c in all) list += c.GetType().Name + " | ";
+                Debug.LogWarning($"[Tumbleweed] activeSelf是False，这个物体上挂着的组件有: {list}");
+
+                Transform p = transform.parent;
+                string parentChain = "";
+                while (p != null)
+                {
+                    parentChain += $"{p.name}(active={p.gameObject.activeSelf}) <- ";
+                    p = p.parent;
+                }
+                Debug.LogWarning($"[Tumbleweed] 父级链路: {parentChain}");
+            }
+        }
 
         float t = 0f;
         while (t < rollDuration)

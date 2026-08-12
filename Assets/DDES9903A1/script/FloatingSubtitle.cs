@@ -5,6 +5,8 @@ using TMPro;
 /// 漂浮字幕（艾迪芬奇风格）—— 文字固定在 3D 空间，玩家靠近时渐显，走远渐隐。
 /// 用于指引和叙事提示。挂在带 TextMeshPro (3D) 的物体上。
 /// 做很多条：复制这个物体，改文字和位置即可。
+///
+/// 新增：玩家刚进入 showDistance 范围的那一刻，可以同步播放一段语音。
 /// </summary>
 [RequireComponent(typeof(TMP_Text))]
 public class FloatingSubtitle : MonoBehaviour
@@ -32,9 +34,19 @@ public class FloatingSubtitle : MonoBehaviour
     [Tooltip("勾选则文字始终转向摄像机；不勾则保持摆放时的固定朝向")]
     public bool faceCamera = false;
 
+    [Header("配音（可选）")]
+    [Tooltip("玩家刚进入showDistance范围的那一刻播放。留空则不播放语音，只有文字")]
+    public AudioClip voiceClip;
+    [Tooltip("留空会自动在这个物体上添加一个 AudioSource")]
+    public AudioSource audioSource;
+    [Tooltip("勾选=只播放一次；取消勾选=每次重新进入范围都会再播放一次")]
+    public bool playVoiceOnce = true;
+
     private TMP_Text tmp;
     private float currentAlpha = 0f;
     private Camera cam;
+    private bool wasInRange = false;
+    private bool hasPlayedVoice = false;
 
     private void Start()
     {
@@ -46,6 +58,17 @@ public class FloatingSubtitle : MonoBehaviour
         }
         cam = Camera.main;
         SetAlpha(0f);
+
+        if (voiceClip != null)
+        {
+            if (audioSource == null)
+            {
+                audioSource = GetComponent<AudioSource>();
+                if (audioSource == null)
+                    audioSource = gameObject.AddComponent<AudioSource>();
+            }
+            audioSource.playOnAwake = false;
+        }
     }
 
     private void Update()
@@ -56,9 +79,23 @@ public class FloatingSubtitle : MonoBehaviour
 
         // 距离 → 目标透明度：近了显现，远了隐去
         float targetAlpha;
+        bool inRange = dist <= showDistance;
+
         if (dist <= fullDistance) targetAlpha = maxAlpha;
         else if (dist >= showDistance) targetAlpha = 0f;
         else targetAlpha = Mathf.InverseLerp(showDistance, fullDistance, dist) * maxAlpha;
+
+        // 刚从范围外进入范围内的这一刻，播放语音
+        if (inRange && !wasInRange)
+        {
+            if (voiceClip != null && audioSource != null && (!playVoiceOnce || !hasPlayedVoice))
+            {
+                audioSource.clip = voiceClip;
+                audioSource.Play();
+                hasPlayedVoice = true;
+            }
+        }
+        wasInRange = inRange;
 
         currentAlpha = Mathf.MoveTowards(currentAlpha, targetAlpha, fadeSpeed * Time.deltaTime);
         SetAlpha(currentAlpha);
