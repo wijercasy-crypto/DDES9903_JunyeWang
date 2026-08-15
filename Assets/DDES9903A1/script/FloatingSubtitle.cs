@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 /// <summary>
 /// 漂浮字幕（艾迪芬奇风格）—— 文字固定在 3D 空间，玩家靠近时渐显，走远渐隐。
@@ -42,11 +43,18 @@ public class FloatingSubtitle : MonoBehaviour
     [Tooltip("勾选=只播放一次；取消勾选=每次重新进入范围都会再播放一次")]
     public bool playVoiceOnce = true;
 
+    [Header("事件")]
+    [Tooltip("玩家刚进入showDistance范围的那一刻触发一次（比如挂BGM淡出）")]
+    public UnityEvent onEnterRange;
+    [Tooltip("勾选=onEnterRange只触发一次；取消勾选=每次重新进入都会再触发")]
+    public bool triggerEventOnce = true;
+
     private TMP_Text tmp;
     private float currentAlpha = 0f;
     private Camera cam;
     private bool wasInRange = false;
     private bool hasPlayedVoice = false;
+    private bool hasTriggeredEvent = false;
 
     private void Start()
     {
@@ -85,7 +93,7 @@ public class FloatingSubtitle : MonoBehaviour
         else if (dist >= showDistance) targetAlpha = 0f;
         else targetAlpha = Mathf.InverseLerp(showDistance, fullDistance, dist) * maxAlpha;
 
-        // 刚从范围外进入范围内的这一刻，播放语音
+        // 刚从范围外进入范围内的这一刻，播放语音 + 触发事件
         if (inRange && !wasInRange)
         {
             if (voiceClip != null && audioSource != null && (!playVoiceOnce || !hasPlayedVoice))
@@ -93,6 +101,12 @@ public class FloatingSubtitle : MonoBehaviour
                 audioSource.clip = voiceClip;
                 audioSource.Play();
                 hasPlayedVoice = true;
+            }
+
+            if (!triggerEventOnce || !hasTriggeredEvent)
+            {
+                onEnterRange.Invoke();
+                hasTriggeredEvent = true;
             }
         }
         wasInRange = inRange;

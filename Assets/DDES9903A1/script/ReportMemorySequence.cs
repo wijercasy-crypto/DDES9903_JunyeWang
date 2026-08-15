@@ -1,14 +1,17 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// 挂在"事故报告"物体上。桌面模式专用（照抄 HandsetPickup 的拿取方式，不用任何 XR 组件）。
 ///
 /// 玩家点击报告（走 Interactable General 的 On Primary Interact 事件）：
 /// 1. 报告飞到摄像机前固定位置，像"举起来看"一样，然后跟随视角
-/// 2. 报告到位后，自动开始走廊渐显：走廊（墙体/画/门）材质透明度从 0 到 1，
-///    像旋转木马发光那样"缓缓出现"，玩家全程能看见，不需要黑幕遮挡
-/// 3. 走廊完全变实（不透明）之后，此时已经把房间挡住了，
+/// 2. 举起来之后有一个 putDownWindowDuration 的窗口期，这段时间内玩家可以
+///    再次点击报告把它"放下"（飞回原位，重新可以拿起）
+/// 3. 窗口期内没有点击"放下"，就自动开始走廊渐显：走廊（墙体/画/门）材质
+///    透明度从 0 到 1，像旋转木马发光那样"缓缓出现"，玩家全程能看见，不需要黑幕遮挡
+/// 4. 走廊完全变实（不透明）之后，此时已经把房间挡住了，
 ///    顺手把房间其他部分关掉（玩家看不出来，因为已经被挡住了）
 /// 走廊尽头怎么走由物理墙体限制，到达发光门后交给你现有的 PortalOnTouch 处理。
 ///
@@ -38,6 +41,16 @@ public class ReportMemorySequence : MonoBehaviour
 
     [Tooltip("报告飞到视野前的动画时长（秒）")]
     public float liftAnimationDuration = 1f;
+
+    [Header("放下选项")]
+    [Tooltip("放下时飞回原位的动画时长（秒）")]
+    public float putDownAnimationDuration = 0.6f;
+    [Tooltip("举着报告的时候，按这个键直接放下（不依赖再次点击报告本身，因为报告贴脸太近时点击射线经常检测不到）")]
+    public KeyCode putDownKey = KeyCode.Mouse0;
+    [Tooltip("拿起后，这么短的时间内不响应放下按键，避免同一次点击被同时判定成\"拿起\"又\"放下\"")]
+    public float putDownInputCooldown = 0.3f;
+
+    private float heldSince = 0f;
 
     [Header("走廊渐显")]
     [Tooltip("走廊的根物体（corridor 父物体），触发时会先 SetActive(true)，" +
@@ -69,8 +82,35 @@ public class ReportMemorySequence : MonoBehaviour
     [Tooltip("走廊渐显耗时，调大一点更有'缓缓浮现'的感觉，比如 2~3 秒")]
     public float corridorFadeDuration = 2.5f;
 
-    private bool triggered = false;
+    [Header("事件")]
+    [Tooltip("走廊开始渐显的那一刻触发一次，比如挂BGM播放")]
+    public UnityEvent onCorridorRevealStart;
+
+    private enum ReportState { Idle, Held }
+    private ReportState state = ReportState.Idle;
+
     private bool followingCamera = false;
+    private bool corridorTriggered = false; // 走廊只在第一次拿起时触发一次，之后拿放不再影响它
+
+    // 拿起前的原始状态，放下时要还原
+    private Transform originalParent;
+    private Vector3 originalLocalPosition;
+    private Quaternion originalLocalRotation;
+
+    private Coroutine activeRoutine;
+
+    private void Update()
+    {
+        // 举着的时候按键直接放下，不依赖点击检测（贴脸物体点击射线经常检测不到）
+        // 冷却期内不响应，避免拿起那一下点击被同时误判成放下
+        if (state == ReportState.Held
+            && Time.time - heldSince > putDownInputCooldown
+            && Input.GetKeyDown(putDownKey))
+        {
+            if (activeRoutine != null) StopCoroutine(activeRoutine);
+            activeRoutine = StartCoroutine(PutDown());
+        }
+    }
 
     private void LateUpdate()
     {
@@ -93,31 +133,52 @@ public class ReportMemorySequence : MonoBehaviour
     }
 
     // 接到 Interactable General 的 On Primary Interact () 事件上
+    // 自由切换：Idle时点击=拿起，Held时点击=放下，可以反复拿放
     public void OnReportInteracted()
     {
-        if (triggered) return; // 防止重复触发
-        triggered = true;
+        if (state == ReportState.Idle)
+        {
+            originalParent = transform.parent;
+            originalLocalPosition = transform.localPosition;
+            originalLocalRotation = transform.localRotation;
 
-        StartCoroutine(PickUpThenRevealCorridor());
+            state = ReportState.Held;
+            heldSince = Time.time;
+            if (activeRoutine != null) StopCoroutine(activeRoutine);
+            activeRoutine = StartCoroutine(PickUp());
+
+            // 走廊渐显只在第一次拿起时触发一次，跟后续拿放无关
+            if (!corridorTriggered)
+            {
+                corridorTriggered = true;
+                StartCoroutine(FadeInCorridor());
+            }
+        }
+        else if (state == ReportState.Held)
+        {
+            if (activeRoutine != null) StopCoroutine(activeRoutine);
+            activeRoutine = StartCoroutine(PutDown());
+        }
     }
 
-    private IEnumerator PickUpThenRevealCorridor()
+    private IEnumerator PickUp()
     {
         Camera cam = GetCamera();
         if (cam == null)
         {
             Debug.LogWarning("[报告] 找不到有效摄像机，无法举起报告！");
+            state = ReportState.Idle;
             yield break;
         }
 
         // 拿起时脱离原来的父物体（抽屉），这样能自由飞到摄像机前
         transform.SetParent(null, true);
 
-        // 关掉物理碰撞，避免飞的过程中被物理干扰
         var rb = GetComponent<Rigidbody>();
         if (rb != null) rb.isKinematic = true;
-        var col = GetComponent<Collider>();
-        if (col != null) col.enabled = false;
+        // 注意：这里不关闭 Collider —— isKinematic=true 已经能防止物理力把它撞飞，
+        // 留着 Collider 启用状态是为了让 EZPZ 的点击交互（靠Collider做射线检测）
+        // 在报告举在手上的时候还能被再次点击到，才能触发"放下"
 
         Vector3 startPos = transform.position;
         Quaternion startRot = transform.rotation;
@@ -139,19 +200,57 @@ public class ReportMemorySequence : MonoBehaviour
             yield return null;
         }
 
-        // 到位后开启"每帧跟随摄像机"
         followingCamera = true;
         Debug.Log("[报告] 已举到视野前");
+    }
 
-        // 报告拿稳了，开始走廊渐显
-        yield return StartCoroutine(FadeInCorridor());
+    private IEnumerator PutDown()
+    {
+        Debug.Log("[报告] 玩家选择放下");
+        followingCamera = false;
+
+        Vector3 startPos = transform.position;
+        Quaternion startRot = transform.rotation;
+
+        Vector3 targetWorldPos = originalParent != null
+            ? originalParent.TransformPoint(originalLocalPosition)
+            : startPos;
+        Quaternion targetWorldRot = originalParent != null
+            ? originalParent.rotation * originalLocalRotation
+            : startRot;
+
+        float elapsed = 0f;
+        while (elapsed < putDownAnimationDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.SmoothStep(0f, 1f, elapsed / putDownAnimationDuration);
+            transform.position = Vector3.Lerp(startPos, targetWorldPos, t);
+            transform.rotation = Quaternion.Slerp(startRot, targetWorldRot, t);
+            yield return null;
+        }
+
+        if (originalParent != null)
+        {
+            transform.SetParent(originalParent, true);
+            transform.localPosition = originalLocalPosition;
+            transform.localRotation = originalLocalRotation;
+        }
+
+        var rb = GetComponent<Rigidbody>();
+        if (rb != null) rb.isKinematic = false;
+        var col = GetComponent<Collider>();
+        if (col != null) col.enabled = true;
+
+        state = ReportState.Idle;
+        Debug.Log("[报告] 已放回原位，可以再次拿起");
     }
 
     private IEnumerator FadeInCorridor()
     {
+        onCorridorRevealStart.Invoke();
+
         if (corridorRoot != null) corridorRoot.SetActive(true);
 
-        // 激活那些不方便嵌套进 corridor 层级、但也需要一起显示的物体（比如 Gate）
         if (extraObjectsToActivate != null)
         {
             foreach (var obj in extraObjectsToActivate)
@@ -160,17 +259,12 @@ public class ReportMemorySequence : MonoBehaviour
             }
         }
 
-        // 墙/地板等：按 corridorFadeDuration 渐显
         StartCoroutine(FadeRenderersAlpha(corridorRenderers, corridorFadeDuration));
-
-        // 门：按 gateFadeDuration 渐显（和墙同时开始，但耗时更久，显得更慢）
         StartCoroutine(FadeRenderersAlpha(gateRenderers, gateFadeDuration));
 
-        // 等两边都渐显完（取较长的那个时间），再隐藏房间其他部分
         float waitTime = Mathf.Max(corridorFadeDuration, gateFadeDuration);
         yield return new WaitForSeconds(waitTime);
 
-        // 走廊（和门）已经完全变实、挡住了房间，这时候关掉房间其他部分，玩家不会察觉
         if (roomElementsToHide != null)
         {
             foreach (var obj in roomElementsToHide)
@@ -189,7 +283,7 @@ public class ReportMemorySequence : MonoBehaviour
         Material[] mats = new Material[renderers.Length];
         for (int i = 0; i < renderers.Length; i++)
         {
-            mats[i] = renderers[i].material; // .material 会自动实例化，不影响其他共用同材质的物体
+            mats[i] = renderers[i].material;
             Color c = mats[i].color;
             c.a = 0f;
             mats[i].color = c;

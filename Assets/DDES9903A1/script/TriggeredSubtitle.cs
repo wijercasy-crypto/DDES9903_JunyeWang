@@ -71,6 +71,8 @@ public class TriggeredSubtitle : MonoBehaviour
     [Header("事件")]
     [Tooltip("所有句子都播完（包括最后的淡出）之后触发一次")]
     public UnityEvent onSequenceComplete;
+    [Tooltip("调用Show()、第一句刚开始显示的那一刻触发一次")]
+    public UnityEvent onShowStarted;
 
     private TMP_Text tmp;
     private Camera cam;
@@ -101,6 +103,7 @@ public class TriggeredSubtitle : MonoBehaviour
     public void Show()
     {
         if (routine != null) StopCoroutine(routine);
+        onShowStarted.Invoke();
         routine = StartCoroutine(PlayAllLines());
     }
 
