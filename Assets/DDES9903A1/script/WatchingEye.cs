@@ -28,6 +28,8 @@ public class WatchingEye : MonoBehaviour
     [Header("眼球转向速度")]
     [Tooltip("越大转得越快越生硬，越小越迟缓诡异")]
     public float lookSpeed = 3f;
+    [Tooltip("眼球模型正面朝向的修正角度。如果眼球看起来是背面/瞳孔朝天，就在这里调，直到瞳孔正对玩家为止。常见修正值：(90,0,0)、(-90,0,0)、(0,90,0)、(0,180,0)")]
+    public Vector3 eyeballRotationOffset = Vector3.zero;
 
     private Vector3 upperEyelidOpenRotation;
     private Vector3 lowerEyelidOpenRotation;
@@ -52,7 +54,7 @@ public class WatchingEye : MonoBehaviour
     {
         if (eyeball != null && player != null)
         {
-            Quaternion targetRot = Quaternion.LookRotation(player.position - eyeball.position);
+            Quaternion targetRot = Quaternion.LookRotation(player.position - eyeball.position) * Quaternion.Euler(eyeballRotationOffset);
             eyeball.rotation = Quaternion.Slerp(eyeball.rotation, targetRot, lookSpeed * Time.deltaTime);
         }
 

@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 // 挂在场景里一个空物体上（比如叫 "FearEyeManager"）。
 // 沿走廊分几个阶段，玩家走到每个阶段的触发点时，该阶段对应的一批眼睛会被激活。
 // 越往前走，激活的眼睛越多，营造"越来越多眼睛在看你"的压迫感。
+// 每个阶段还可以挂一个专属事件（比如第三阶段触发时开一扇门）。
 public class FearEyeManager : MonoBehaviour
 {
     [System.Serializable]
@@ -12,6 +14,8 @@ public class FearEyeManager : MonoBehaviour
         public Transform triggerPoint;
         [Tooltip("这个阶段要激活的眼睛们（提前摆好位置，初始设为不激活）")]
         public GameObject[] eyesToActivate;
+        [Tooltip("这个阶段触发时额外触发一次（可选，比如开门、播放音效等）")]
+        public UnityEvent onStageTriggered;
     }
 
     [Tooltip("玩家Transform，留空自动按Tag查找")]
@@ -59,6 +63,8 @@ public class FearEyeManager : MonoBehaviour
 
                 if (showDebugLogs)
                     Debug.Log($"[FearEyeManager] 第{i}阶段触发，激活了{stages[i].eyesToActivate.Length}只眼睛");
+
+                stages[i].onStageTriggered.Invoke();
             }
         }
     }
