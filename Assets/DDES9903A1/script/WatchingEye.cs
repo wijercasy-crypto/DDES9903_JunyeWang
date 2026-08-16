@@ -1,25 +1,36 @@
 using UnityEngine;
 using System.Collections;
 
-// 挂在每一个眼睛模型上。眼睛会转向盯着玩家，并且按随机间隔眨眼。
-// 眨眼是用缩放Y轴模拟的(压扁再复原)，不需要眼睛模型本身有眨眼动画。
+// 挂在眼睛的父物体上（eyeball + upperEyelid + lowerEyelid 的共同父级）。
+// 眼球转向盯着玩家；眨眼时上下眼皮转动闭合盖住眼球，不再是缩放整个眼球模拟。
 public class WatchingEye : MonoBehaviour
 {
-    [Tooltip("留空自动按Tag查找玩家")]
-    public Transform player;
-    [Tooltip("要转向玩家的部分，留空就是整个物体自己转")]
+    [Header("组成部件（拖三个子物体进来）")]
     public Transform eyeball;
+    public Transform upperEyelid;
+    public Transform lowerEyelid;
 
-    [Header("眨眼")]
+    [Header("玩家")]
+    [Tooltip("留空自动按Tag查找")]
+    public Transform player;
+
+    [Header("眨眼闭合角度")]
+    [Tooltip("上眼皮闭眼时的局部旋转角度。先在Scene里手动转upperEyelid到\"闭眼\"效果，把Inspector里当时的Rotation数值抄过来填这里")]
+    public Vector3 upperEyelidClosedRotation;
+    [Tooltip("下眼皮闭眼时的局部旋转角度，同上")]
+    public Vector3 lowerEyelidClosedRotation;
+
+    [Header("眨眼节奏")]
     public float blinkIntervalMin = 2f;
     public float blinkIntervalMax = 6f;
     public float blinkDuration = 0.15f;
 
-    [Header("转向速度")]
-    [Tooltip("每秒转向玩家的插值速度，越大转得越快越生硬，越小越迟缓诡异")]
+    [Header("眼球转向速度")]
+    [Tooltip("越大转得越快越生硬，越小越迟缓诡异")]
     public float lookSpeed = 3f;
 
-    private Vector3 baseScale;
+    private Vector3 upperEyelidOpenRotation;
+    private Vector3 lowerEyelidOpenRotation;
     private float nextBlinkTime;
 
     void OnEnable()
@@ -29,19 +40,20 @@ public class WatchingEye : MonoBehaviour
             GameObject p = GameObject.FindGameObjectWithTag("Player");
             if (p != null) player = p.transform;
         }
-        Transform t = eyeball != null ? eyeball : transform;
-        baseScale = t.localScale;
+
+        // 记住"睁眼"时的初始角度，眨完眼要转回来
+        if (upperEyelid != null) upperEyelidOpenRotation = upperEyelid.localEulerAngles;
+        if (lowerEyelid != null) lowerEyelidOpenRotation = lowerEyelid.localEulerAngles;
+
         ScheduleNextBlink();
     }
 
     void Update()
     {
-        Transform t = eyeball != null ? eyeball : transform;
-
-        if (player != null)
+        if (eyeball != null && player != null)
         {
-            Quaternion targetRot = Quaternion.LookRotation(player.position - t.position);
-            t.rotation = Quaternion.Slerp(t.rotation, targetRot, lookSpeed * Time.deltaTime);
+            Quaternion targetRot = Quaternion.LookRotation(player.position - eyeball.position);
+            eyeball.rotation = Quaternion.Slerp(eyeball.rotation, targetRot, lookSpeed * Time.deltaTime);
         }
 
         if (Time.time >= nextBlinkTime)
@@ -58,25 +70,35 @@ public class WatchingEye : MonoBehaviour
 
     IEnumerator Blink()
     {
-        Transform t = eyeball != null ? eyeball : transform;
         float half = blinkDuration * 0.5f;
-        float time = 0f;
+        float t = 0f;
 
-        while (time < half)
+        // 闭眼
+        while (t < half)
         {
-            time += Time.deltaTime;
-            float pct = time / half;
-            t.localScale = new Vector3(baseScale.x, Mathf.Lerp(baseScale.y, baseScale.y * 0.05f, pct), baseScale.z);
+            t += Time.deltaTime;
+            float pct = t / half;
+            if (upperEyelid != null)
+                upperEyelid.localEulerAngles = Vector3.Lerp(upperEyelidOpenRotation, upperEyelidClosedRotation, pct);
+            if (lowerEyelid != null)
+                lowerEyelid.localEulerAngles = Vector3.Lerp(lowerEyelidOpenRotation, lowerEyelidClosedRotation, pct);
             yield return null;
         }
-        time = 0f;
-        while (time < half)
+
+        // 睁开
+        t = 0f;
+        while (t < half)
         {
-            time += Time.deltaTime;
-            float pct = time / half;
-            t.localScale = new Vector3(baseScale.x, Mathf.Lerp(baseScale.y * 0.05f, baseScale.y, pct), baseScale.z);
+            t += Time.deltaTime;
+            float pct = t / half;
+            if (upperEyelid != null)
+                upperEyelid.localEulerAngles = Vector3.Lerp(upperEyelidClosedRotation, upperEyelidOpenRotation, pct);
+            if (lowerEyelid != null)
+                lowerEyelid.localEulerAngles = Vector3.Lerp(lowerEyelidClosedRotation, lowerEyelidOpenRotation, pct);
             yield return null;
         }
-        t.localScale = baseScale;
+
+        if (upperEyelid != null) upperEyelid.localEulerAngles = upperEyelidOpenRotation;
+        if (lowerEyelid != null) lowerEyelid.localEulerAngles = lowerEyelidOpenRotation;
     }
 }

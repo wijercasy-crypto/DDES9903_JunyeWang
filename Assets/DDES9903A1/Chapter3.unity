@@ -5790,6 +5790,10 @@ MonoBehaviour:
   voiceClip: {fileID: 8300000, guid: 15f2404e0f46e0b4284d578f5121f528, type: 3}
   audioSource: {fileID: 0}
   playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &378696733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5815,6 +5819,9 @@ MonoBehaviour:
   faceCamera: 0
   showDebugLogs: 1
   onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowStarted:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &378696734
@@ -8796,6 +8803,10 @@ MonoBehaviour:
   voiceClip: {fileID: 0}
   audioSource: {fileID: 0}
   playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &515828980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8821,6 +8832,9 @@ MonoBehaviour:
   faceCamera: 0
   showDebugLogs: 1
   onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowStarted:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &515828981
@@ -9883,6 +9897,10 @@ MonoBehaviour:
   voiceClip: {fileID: 8300000, guid: 6131bee44ad65114dbdc4b2565abeff9, type: 3}
   audioSource: {fileID: 0}
   playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &585454203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9908,6 +9926,9 @@ MonoBehaviour:
   faceCamera: 0
   showDebugLogs: 1
   onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowStarted:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &585454204
@@ -11038,6 +11059,10 @@ MonoBehaviour:
   voiceClip: {fileID: 8300000, guid: da4f12f3ee3e7704e9b5043b3cb277ce, type: 3}
   audioSource: {fileID: 0}
   playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &650448982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11063,6 +11088,9 @@ MonoBehaviour:
   faceCamera: 0
   showDebugLogs: 1
   onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowStarted:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &650448983
@@ -12427,6 +12455,10 @@ MonoBehaviour:
   voiceClip: {fileID: 0}
   audioSource: {fileID: 0}
   playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &729563758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12472,6 +12504,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onShowStarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &729563759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14630,6 +14665,10 @@ MonoBehaviour:
   voiceClip: {fileID: 8300000, guid: a3ada287ba4fb5444bffe4773712bf34, type: 3}
   audioSource: {fileID: 0}
   playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &878502989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14655,6 +14694,9 @@ MonoBehaviour:
   faceCamera: 0
   showDebugLogs: 1
   onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowStarted:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &878502990
@@ -15289,6 +15331,10 @@ MonoBehaviour:
   voiceClip: {fileID: 8300000, guid: e204226c17842fb498afa05e8cc3d6d7, type: 3}
   audioSource: {fileID: 0}
   playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &914653695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15314,6 +15360,9 @@ MonoBehaviour:
   faceCamera: 0
   showDebugLogs: 1
   onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowStarted:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &914653696
@@ -15577,6 +15626,10 @@ MonoBehaviour:
   voiceClip: {fileID: 8300000, guid: 3f7123d466cf2fc49b0a679edfd8542d, type: 3}
   audioSource: {fileID: 0}
   playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &925555150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15602,6 +15655,9 @@ MonoBehaviour:
   faceCamera: 0
   showDebugLogs: 1
   onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowStarted:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &925555151
@@ -15858,6 +15914,9 @@ MonoBehaviour:
   faceCamera: 0
   showDebugLogs: 1
   onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowStarted:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &931351383
@@ -23000,6 +23059,10 @@ MonoBehaviour:
   voiceClip: {fileID: 8300000, guid: 2c7f2d10915119941ad8321be0f81896, type: 3}
   audioSource: {fileID: 0}
   playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &1478139671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23025,6 +23088,9 @@ MonoBehaviour:
   faceCamera: 0
   showDebugLogs: 1
   onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowStarted:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1478139672
@@ -24266,7 +24332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5477663902695651912, guid: df63664dbdd376b4298726771ab129fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 674.4
+      value: 673.7
       objectReference: {fileID: 0}
     - target: {fileID: 5477663902695651912, guid: df63664dbdd376b4298726771ab129fa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -24274,7 +24340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5477663902695651912, guid: df63664dbdd376b4298726771ab129fa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 390.9
+      value: 387.17
       objectReference: {fileID: 0}
     - target: {fileID: 5477663902695651912, guid: df63664dbdd376b4298726771ab129fa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -25952,6 +26018,10 @@ MonoBehaviour:
   voiceClip: {fileID: 8300000, guid: e117d63e28359bf4ba1911e3e56923d0, type: 3}
   audioSource: {fileID: 0}
   playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &1605640869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25977,6 +26047,9 @@ MonoBehaviour:
   faceCamera: 0
   showDebugLogs: 1
   onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowStarted:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1605640870
@@ -29617,6 +29690,10 @@ MonoBehaviour:
   voiceClip: {fileID: 8300000, guid: 91f9a3a55a43dfd4b9aa2c85862fcf73, type: 3}
   audioSource: {fileID: 0}
   playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &1824019233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29642,6 +29719,9 @@ MonoBehaviour:
   faceCamera: 0
   showDebugLogs: 1
   onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowStarted:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1824019234
@@ -33945,6 +34025,9 @@ MonoBehaviour:
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
+  onShowStarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2046233677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34310,6 +34393,10 @@ MonoBehaviour:
   voiceClip: {fileID: 0}
   audioSource: {fileID: 0}
   playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &2056982254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34358,6 +34445,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onShowStarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2056982255
 MonoBehaviour:
   m_ObjectHideFlags: 0

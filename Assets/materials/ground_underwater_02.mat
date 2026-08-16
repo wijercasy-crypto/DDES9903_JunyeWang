@@ -117,13 +117,13 @@ Material:
     - _GlossyReflections: 0
     - _HeightFogEnd: 8
     - _HeightFogStart: -8
-    - _Metallic: 0.206
+    - _Metallic: 0.16
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 1
+    - _Smoothness: 0.804
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -134,8 +134,8 @@ Material:
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.48725587, g: 0.7290362, b: 0.791, a: 1}
-    - _Color: {r: 0.48725587, g: 0.7290362, b: 0.791, a: 1}
+    - _BaseColor: {r: 0.28110033, g: 0.33147448, b: 0.38364768, a: 1}
+    - _Color: {r: 0.2811003, g: 0.33147445, b: 0.38364765, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HeightFogColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

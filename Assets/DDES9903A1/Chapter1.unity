@@ -11266,13 +11266,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggeredSubtitle
   startDelay: 0.2
   lines:
-  - I promised I'd keep her safe.
+  - text: I promised I'd keep her safe.
+    audioClip: {fileID: 0}
+    startTime: 0
+  masterAudioClip: {fileID: 0}
+  audioSource: {fileID: 0}
   fadeInDuration: 1
   holdDuration: 5.92
   fadeOutDuration: 1
   gapBetweenLines: 0.5
   maxAlpha: 1
+  minLineHold: 1.5
   faceCamera: 0
+  showDebugLogs: 1
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowStarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &317596759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13715,14 +13727,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggeredSubtitle
   startDelay: 0
   lines:
-  - "Have I been here before\u2026"
-  - "Who is she\u2026 really?"
+  - text: "Have I been here before\u2026"
+    audioClip: {fileID: 0}
+    startTime: 0
+  - text: 
+    audioClip: {fileID: 0}
+    startTime: 0
+  masterAudioClip: {fileID: 0}
+  audioSource: {fileID: 0}
   fadeInDuration: 1
   holdDuration: 4.86
   fadeOutDuration: 1
   gapBetweenLines: 0.5
   maxAlpha: 1
+  minLineHold: 1.5
   faceCamera: 0
+  showDebugLogs: 1
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowStarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &365919996 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4799377318785323919, guid: 160b3b0204585ab4996d378326172ec4, type: 3}
@@ -15021,6 +15047,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &409410616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17856,14 +17889,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggeredSubtitle
   startDelay: 2
   lines:
-  - "\u201CCaptain, are you ready to leave Earth?\u201D"
-  - "\u201CYes Sir! Next stop, the moon!\u201D"
+  - text: "\u201CCaptain, are you ready to leave Earth?\u201D"
+    audioClip: {fileID: 0}
+    startTime: 0
+  - text: "\u201CYes sir! Next stop, the moon!\""
+    audioClip: {fileID: 0}
+    startTime: 0
+  masterAudioClip: {fileID: 0}
+  audioSource: {fileID: 0}
   fadeInDuration: 0.92
   holdDuration: 4.46
   fadeOutDuration: 0.72
   gapBetweenLines: 0.48
   maxAlpha: 1
+  minLineHold: 1.5
   faceCamera: 1
+  showDebugLogs: 1
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowStarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &489361749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21071,6 +21118,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &583985227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22002,6 +22056,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &600723980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22812,13 +22873,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggeredSubtitle
   startDelay: 0
   lines:
-  - "Who\u2026 was that?"
+  - text: "Who\u2026 was that?"
+    audioClip: {fileID: 0}
+    startTime: 0
+  masterAudioClip: {fileID: 0}
+  audioSource: {fileID: 0}
   fadeInDuration: 0.78
   holdDuration: 2
   fadeOutDuration: 0.82
   gapBetweenLines: 0.22
   maxAlpha: 1
+  minLineHold: 1.5
   faceCamera: 0
+  showDebugLogs: 1
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowStarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &609739387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24587,13 +24660,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggeredSubtitle
   startDelay: 0
   lines:
-  - "Up there\u2026 on the lighthouse."
+  - text: "Up there\u2026 on the lighthouse."
+    audioClip: {fileID: 0}
+    startTime: 0
+  masterAudioClip: {fileID: 0}
+  audioSource: {fileID: 0}
   fadeInDuration: 1.53
   holdDuration: 2.54
   fadeOutDuration: 0.82
   gapBetweenLines: 0.22
   maxAlpha: 1
+  minLineHold: 1.5
   faceCamera: 0
+  showDebugLogs: 1
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowStarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &647368483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25593,6 +25678,13 @@ MonoBehaviour:
   fadeSpeed: 3.71
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &669707798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33254,6 +33346,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &866809056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33877,6 +33976,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &874804651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36002,6 +36108,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &928389471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36575,6 +36688,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &938797971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37247,6 +37367,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &964525422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37755,6 +37882,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &972194690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38447,6 +38581,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &991855365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38935,6 +39076,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &998903366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40261,6 +40409,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &1023020324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42778,13 +42933,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggeredSubtitle
   startDelay: 0.1
   lines:
-  - "Where did she go\u2026"
+  - text: "Where did she go\u2026"
+    audioClip: {fileID: 0}
+    startTime: 0
+  masterAudioClip: {fileID: 0}
+  audioSource: {fileID: 0}
   fadeInDuration: 1.88
   holdDuration: 7.08
   fadeOutDuration: 1.36
   gapBetweenLines: 0.5
   maxAlpha: 1
+  minLineHold: 1.5
   faceCamera: 0
+  showDebugLogs: 1
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowStarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1070509566 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6408411330837416567, guid: f7e0112f657aa524293c4af1e4c0540c, type: 3}
@@ -43733,6 +43900,13 @@ MonoBehaviour:
   fadeSpeed: 3.62
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &1102530003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44952,14 +45126,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggeredSubtitle
   startDelay: 0.13
   lines:
-  - "Wait\u2026 she\u2019s on the lighthouse again."
-  - "I can see her more clearly now\u2026"
+  - text: "\u201CWait\u2026 she\u2019s on the lighthouse again."
+    audioClip: {fileID: 0}
+    startTime: 0
+  - text: 
+    audioClip: {fileID: 0}
+    startTime: 0
+  masterAudioClip: {fileID: 0}
+  audioSource: {fileID: 0}
   fadeInDuration: 1
   holdDuration: 4.37
   fadeOutDuration: 1
   gapBetweenLines: 0.45
   maxAlpha: 1
+  minLineHold: 1.5
   faceCamera: 0
+  showDebugLogs: 1
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowStarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1129508644 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 939441780337406929, guid: 480fe455c04db844e9e5dc364661d234, type: 3}
@@ -46439,6 +46627,13 @@ MonoBehaviour:
   fadeSpeed: 3.71
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &1149830188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48837,6 +49032,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &1209605432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50554,6 +50756,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &1245250197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53192,6 +53401,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &1294021679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55626,19 +55842,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2680433250222999425, guid: 0b3aaf85dd52abf4d93da42878053ad7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3421797427095693753, guid: 0b3aaf85dd52abf4d93da42878053ad7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2381914008855821987, guid: 0b3aaf85dd52abf4d93da42878053ad7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2117149292231657563, guid: 0b3aaf85dd52abf4d93da42878053ad7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b3aaf85dd52abf4d93da42878053ad7, type: 3}
 --- !u!1001 &1360688727
 PrefabInstance:
@@ -57482,6 +57686,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &1417983159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58764,6 +58975,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &1456990783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61779,6 +61997,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &1531149675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66157,6 +66382,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &1650290006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67892,6 +68124,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &1715091874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74726,6 +74965,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &1895558616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76795,6 +77041,13 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
+  voiceClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  playVoiceOnce: 1
+  onEnterRange:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEventOnce: 1
 --- !u!114 &1957105009
 MonoBehaviour:
   m_ObjectHideFlags: 0
