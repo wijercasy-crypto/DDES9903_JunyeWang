@@ -5817,7 +5817,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -8830,7 +8832,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -9924,7 +9928,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -11086,7 +11092,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -12488,7 +12496,9 @@ MonoBehaviour:
   maxAlpha: 0.573
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls:
@@ -14692,7 +14702,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -15358,7 +15370,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -15653,7 +15667,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -15912,7 +15928,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -21913,6 +21931,7 @@ GameObject:
   - component: {fileID: 1394744356}
   - component: {fileID: 1394744355}
   - component: {fileID: 1394744357}
+  - component: {fileID: 1394744358}
   m_Layer: 0
   m_Name: FarewellSequenceManager
   m_TagString: Untagged
@@ -22031,7 +22050,19 @@ MonoBehaviour:
         m_CallState: 2
   onFarewellComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1394744358}
+        m_TargetAssemblyTypeName: HappyEndingTrigger, Assembly-CSharp
+        m_MethodName: MarkHappyEndingComplete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onEntryPromptReady:
     m_PersistentCalls:
       m_Calls:
@@ -22169,6 +22200,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1394744358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394744354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e97e767c2d081f48b3f39b25900f5c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HappyEndingTrigger
 --- !u!1001 &1401884021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23086,7 +23129,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -26045,7 +26090,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -29717,7 +29764,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -34021,7 +34070,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -34429,7 +34480,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls:

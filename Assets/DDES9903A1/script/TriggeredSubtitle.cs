@@ -64,9 +64,15 @@ public class TriggeredSubtitle : MonoBehaviour
 
     [Header("朝向玩家")]
     public bool faceCamera = false;
+    [Tooltip("朝向摄像机时的角度修正。如果文字上下颠倒/背对/镜像，就在这里手动试出正确角度，比如(0,180,0)或(180,0,0)")]
+    public Vector3 faceCameraRotationOffset = Vector3.zero;
 
     [Header("调试")]
     public bool showDebugLogs = true;
+    [Tooltip("勾选后，这句/这组字幕只会真正播放一次，之后再调用Show()不会有任何反应")]
+    public bool playOnlyOnce = false;
+
+    private bool hasPlayedOnce = false;
 
     [Header("事件")]
     [Tooltip("所有句子都播完（包括最后的淡出）之后触发一次")]
@@ -96,12 +102,26 @@ public class TriggeredSubtitle : MonoBehaviour
     private void Update()
     {
         if (faceCamera && cam != null && tmp.color.a > 0.01f)
-            transform.rotation = Quaternion.LookRotation(transform.position - cam.transform.position);
+        {
+            Vector3 dir = cam.transform.position - transform.position;
+            if (dir.sqrMagnitude > 0.0001f)
+            {
+                Quaternion look = Quaternion.LookRotation(dir, cam.transform.up);
+                transform.rotation = look * Quaternion.Euler(faceCameraRotationOffset);
+            }
+        }
     }
 
     /// <summary>外部调用：从头开始播放所有句子</summary>
     public void Show()
     {
+        if (playOnlyOnce && hasPlayedOnce)
+        {
+            if (showDebugLogs) Debug.Log("[TriggeredSubtitle] 已经播过一次了，Play Only Once开着，不再重复播放");
+            return;
+        }
+        hasPlayedOnce = true;
+
         if (routine != null) StopCoroutine(routine);
         onShowStarted.Invoke();
         routine = StartCoroutine(PlayAllLines());

@@ -662,6 +662,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &17880755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,7 +690,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -2051,6 +2055,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &73975967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2077,7 +2083,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -3388,6 +3396,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &111048509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3414,7 +3424,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 1
+  faceCameraRotationOffset: {x: 0, y: 180, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -4384,6 +4396,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &158168788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4410,7 +4424,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -5127,7 +5143,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -5321,6 +5339,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!1001 &217552282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5864,7 +5884,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 1
+  faceCameraRotationOffset: {x: 0, y: 180, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -6876,15 +6898,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279435180}
   m_LocalRotation: {x: -0, y: 0.25723326, z: -0, w: 0.96634936}
-  m_LocalPosition: {x: 0, y: 0, z: 29}
-  m_LocalScale: {x: 0.2665404, y: 0.21648826, z: 1.2845569}
+  m_LocalPosition: {x: 0, y: 0, z: 30.47}
+  m_LocalScale: {x: 0.33093658, y: 0.26879182, z: 1.5949059}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 589940930}
   m_LocalEulerAnglesHint: {x: 0, y: 29.812, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -89.6, y: 4.08}
+  m_AnchoredPosition: {x: -88.23, y: 3.26}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &279435182
@@ -6912,6 +6934,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &279435183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6938,7 +6962,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -6965,7 +6991,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Should I face the truth\u2026 or run away from it?"
+  m_text: How should I choose?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8280,7 +8306,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 1
+  faceCameraRotationOffset: {x: 0, y: 180, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -9696,6 +9724,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &428355383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9722,7 +9752,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -12492,7 +12524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 1
   outlineColor: {r: 1, g: 0.8598976, b: 0.58805025, a: 1}
-  outlineWidth: 5
+  outlineWidth: 7.44
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -13041,7 +13073,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 1
   outlineColor: {r: 1, g: 0.8598976, b: 0.58805025, a: 1}
-  outlineWidth: 5
+  outlineWidth: 7.82
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -14195,7 +14227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 187624740cdf7c84eb3628b7d9636c0f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.826
+      value: 0.816
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 187624740cdf7c84eb3628b7d9636c0f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14203,19 +14235,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 187624740cdf7c84eb3628b7d9636c0f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.000000014901161
+      value: -0.000000014899141
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 187624740cdf7c84eb3628b7d9636c0f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -1
+      value: -0.9998644
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 187624740cdf7c84eb3628b7d9636c0f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.016470823
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 187624740cdf7c84eb3628b7d9636c0f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -2.454344e-10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 187624740cdf7c84eb3628b7d9636c0f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -14227,7 +14259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 187624740cdf7c84eb3628b7d9636c0f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 1.8869934
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 187624740cdf7c84eb3628b7d9636c0f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -14387,13 +14419,15 @@ MonoBehaviour:
   fadeSpeed: 2
   maxAlpha: 1
   faceCamera: 0
-  voiceClip: {fileID: 0}
+  voiceClip: {fileID: 8300000, guid: a0cd40a0cfa566f4d949eaaeb84e4fed, type: 3}
   audioSource: {fileID: 0}
   playVoiceOnce: 1
   onEnterRange:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &630435294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14408,8 +14442,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggeredSubtitle
   startDelay: 3
   lines:
-  - text: 
-    audioClip: {fileID: 0}
+  - text: "I just\u2026 \nmissed that call."
+    audioClip: {fileID: 8300000, guid: a0cd40a0cfa566f4d949eaaeb84e4fed, type: 3}
     startTime: 0
   masterAudioClip: {fileID: 0}
   audioSource: {fileID: 0}
@@ -14420,7 +14454,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -14659,19 +14695,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8146891
+      value: 0.91562194
       objectReference: {fileID: 0}
     - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.31247443
+      value: 0.30879036
       objectReference: {fileID: 0}
     - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5006428
+      value: 0.49474022
       objectReference: {fileID: 0}
     - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.6
+      value: -7.95
       objectReference: {fileID: 0}
     - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14679,7 +14715,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 61.1
+      value: 60.11
       objectReference: {fileID: 0}
     - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15180,6 +15216,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &686347757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15206,7 +15244,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -15419,6 +15459,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &686617348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15445,7 +15487,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 1
+  faceCameraRotationOffset: {x: 0, y: 180, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -15988,7 +16032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 1
   outlineColor: {r: 1, g: 0.8598976, b: 0.58805025, a: 1}
-  outlineWidth: 5
+  outlineWidth: 7.82
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -18517,6 +18561,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &818495597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18543,7 +18589,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -18756,6 +18804,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &820066043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18782,7 +18832,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -19134,6 +19186,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &831485610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19160,7 +19214,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 1
+  faceCameraRotationOffset: {x: 0, y: 180, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -20951,7 +21007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PortalOnTouch
   targetSceneName: WithClaire
-  fadeDuration: 1
+  fadeDuration: 0
   fadeOverlay: {fileID: 0}
   fadeColor: {r: 1, g: 1, b: 1, a: 1}
   portalSound: {fileID: 0}
@@ -20976,8 +21032,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.9999999, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.0709772, y: 1, z: 2.024807}
+  m_Center: {x: 0.006564797, y: 0, z: 0.07351846}
 --- !u!64 &892226428
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24077,6 +24133,7 @@ Transform:
   - {fileID: 1363745649}
   - {fileID: 825946612}
   - {fileID: 803552113}
+  - {fileID: 1889500520}
   - {fileID: 1738014988}
   - {fileID: 1471180222}
   - {fileID: 782882633}
@@ -24736,7 +24793,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 1
+  faceCameraRotationOffset: {x: 0, y: 180, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -24768,6 +24827,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!1 &1065955083
 GameObject:
   m_ObjectHideFlags: 0
@@ -30564,6 +30625,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &1106985049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30590,7 +30653,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -31489,6 +31554,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &1164859680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31515,7 +31582,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 1
+  faceCameraRotationOffset: {x: 0, y: 180, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -33646,6 +33715,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &1255273947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33672,7 +33743,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -34471,6 +34544,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &1292475484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34497,7 +34572,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -36971,6 +37048,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &1414535377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36998,7 +37077,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls:
@@ -37831,6 +37912,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &1445356617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37857,7 +37940,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -39315,10 +39400,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17496723f88ad8948aa04a5bbc874e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PortalOnTouch
-  targetSceneName: Prologue
+  targetSceneName: Land of Fear
   fadeDuration: 0
   fadeOverlay: {fileID: 0}
-  fadeColor: {r: 1, g: 1, b: 1, a: 1}
+  fadeColor: {r: 1, g: 1, b: 1, a: 0}
   portalSound: {fileID: 0}
   portalLight: {fileID: 0}
   flashIntensity: 20
@@ -39957,7 +40042,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 1
+  faceCameraRotationOffset: {x: 0, y: 180, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls:
@@ -41532,6 +41619,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &1643928591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41558,7 +41647,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 1
+  faceCameraRotationOffset: {x: 0, y: 180, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -42381,6 +42472,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &1685356257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42407,7 +42500,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -42443,8 +42538,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291875024
-  m_fontColor: {r: 0.81761, g: 0.81761, b: 0.81761, a: 1}
+    rgba: 4287029759
+  m_fontColor: {r: 1, g: 0.88231754, b: 0.5251572, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -43587,7 +43682,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -46148,6 +46245,110 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1886381924}
   m_Mesh: {fileID: 4300002, guid: 95f15b4b57c55804d8a1c3ae42594fb4, type: 3}
+--- !u!1001 &1889500519
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1026848437}
+    m_Modifications:
+    - target: {fileID: 2653712686469174120, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
+      propertyPath: m_Name
+      value: PP_Hill_Forest_08 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8146891
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4952095
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5006428
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -28.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 59.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9470256
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.3211581
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -37.466
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2653712686469174120, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1889500522}
+  m_SourcePrefab: {fileID: 100100000, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
+--- !u!4 &1889500520 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3429545045030668754, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
+  m_PrefabInstance: {fileID: 1889500519}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1889500521 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2653712686469174120, guid: b8ae455adbde6dd46b289f8f83173711, type: 3}
+  m_PrefabInstance: {fileID: 1889500519}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1889500522
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889500521}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3482256076994431749, guid: 81fdae6c599914a4ab889e8733dc8a1f, type: 3}
 --- !u!1 &1894406404
 GameObject:
   m_ObjectHideFlags: 0
@@ -49025,6 +49226,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &2024235826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49051,7 +49254,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -49918,6 +50123,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &2047588282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49944,7 +50151,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 0
+  faceCameraRotationOffset: {x: 0, y: 0, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -55142,6 +55351,51 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 157284666}
   m_SourcePrefab: {fileID: 100100000, guid: 9bfe7d9c582ae7644b668e4715fb092a, type: 3}
+--- !u!1 &2088219471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2088219473}
+  - component: {fileID: 2088219472}
+  m_Layer: 0
+  m_Name: UnlockFlagOnEnter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2088219472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088219471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b0eb6f392469a4092151810ef533a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnlockFlagOnEnter
+  flagToUnlock: 1
+--- !u!4 &2088219473
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088219471}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.66728, y: -0.35228, z: -4.85641}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2089787560 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 71ad808904d9b254a927bacfae462db0, type: 3}
@@ -55345,6 +55599,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &2100021537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55371,7 +55627,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 1
+  faceCameraRotationOffset: {x: 0, y: 180, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -56786,6 +57044,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   triggerEventOnce: 1
+  textAfterHappyEnding: 
+  voiceClipAfterHappyEnding: {fileID: 0}
 --- !u!114 &2125784718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56812,7 +57072,9 @@ MonoBehaviour:
   maxAlpha: 1
   minLineHold: 1.5
   faceCamera: 1
+  faceCameraRotationOffset: {x: 0, y: 180, z: 0}
   showDebugLogs: 1
+  playOnlyOnce: 0
   onSequenceComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -57316,3 +57578,4 @@ SceneRoots:
   - {fileID: 1205724368}
   - {fileID: 763238665}
   - {fileID: 1096825840}
+  - {fileID: 2088219473}

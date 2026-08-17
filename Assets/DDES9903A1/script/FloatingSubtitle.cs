@@ -49,6 +49,13 @@ public class FloatingSubtitle : MonoBehaviour
     [Tooltip("勾选=onEnterRange只触发一次；取消勾选=每次重新进入都会再触发")]
     public bool triggerEventOnce = true;
 
+    [Header("走过Happy Ending后替换文字（可选）")]
+    [Tooltip("如果玩家已经达成过Happy Ending，这句字幕会自动换成这里填的新文字。留空则不替换，保持原文")]
+    [TextArea]
+    public string textAfterHappyEnding = "";
+    [Tooltip("同上，HE之后要换成的语音。留空则不替换，继续用原来的voiceClip")]
+    public AudioClip voiceClipAfterHappyEnding;
+
     private TMP_Text tmp;
     private float currentAlpha = 0f;
     private Camera cam;
@@ -66,6 +73,15 @@ public class FloatingSubtitle : MonoBehaviour
         }
         cam = Camera.main;
         SetAlpha(0f);
+
+        if (RoomProgressState.hasCompletedHappyEnding)
+        {
+            if (!string.IsNullOrEmpty(textAfterHappyEnding))
+                tmp.text = textAfterHappyEnding;
+
+            if (voiceClipAfterHappyEnding != null)
+                voiceClip = voiceClipAfterHappyEnding;
+        }
 
         if (voiceClip != null)
         {
